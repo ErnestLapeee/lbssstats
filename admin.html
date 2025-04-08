@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - LBSS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="league-styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="game-stats.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.jpg" alt="LBSS Logo">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Sākumlapa</a>
+                <a href="league.html">Latvijas Beisbola Līga</a>
+                <a href="admin.html" class="active">Admin Panel</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Admin Panel</h1>
+            <p>Spēļu pārvaldība</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="admin-section">
+            <div class="container">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="showTab('add-game')">
+                        <i class="fas fa-plus"></i> Pievienot spēli
+                    </button>
+                    <button class="tab-btn" onclick="showTab('manage-games')">
+                        <i class="fas fa-edit"></i> Pārvaldīt spēles
+                    </button>
+                    <button class="tab-btn" onclick="showTab('manage-players')">
+                        <i class="fas fa-users"></i> Pārvaldīt spēlētājus
+                    </button>
+                </div>
+
+                <div id="add-game" class="tab-content active">
+                    <form id="add-game-form" class="admin-form">
+                        <div class="form-group">
+                            <label>Posms</label>
+                            <select name="stage" required>
+                                <option value="I">I POSMS</option>
+                                <option value="II">II POSMS</option>
+                                <option value="III">III POSMS</option>
+                                <option value="IV">IV POSMS</option>
+                                <option value="V">V POSMS</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Datums</label>
+                                <input type="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Laiks</label>
+                                <input type="time" name="time" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Mājas komanda</label>
+                                <select name="home-team" required>
+                                    <option value="ARCHERS">Archers</option>
+                                    <option value="SIGULDA">Sigulda</option>
+                                    <option value="PLATONE">Platone</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Viesu komanda</label>
+                                <select name="away-team" required>
+                                    <option value="ARCHERS">Archers</option>
+                                    <option value="SIGULDA">Sigulda</option>
+                                    <option value="PLATONE">Platone</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Norises vieta</label>
+                            <select name="location" required>
+                                <option value="LU Beisbola laukums">LU Beisbola laukums</option>
+                                <option value="Beisbola laukums &quot;Lielvircava&quot;">Beisbola laukums "Lielvircava"</option>
+                                <option value="Beisbola laukums &quot;Turaidas skola&quot;">Beisbola laukums "Turaidas skola"</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group game-status">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="is-completed" onchange="toggleScoreInputs(this)">
+                                Spēle ir pabeigta (atzīmēt, lai pievienotu rezultātu)
+                            </label>
+                        </div>
+
+                        <div class="form-row score-inputs" style="display: none;">
+                            <div class="form-group">
+                                <label>Mājas komandas punkti</label>
+                                <input type="number" name="home-score" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Viesu komandas punkti</label>
+                                <input type="number" name="away-score" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Saglabāt
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-undo"></i> Atcelt
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="manage-games" class="tab-content">
+                    <div class="games-list">
+                        <!-- Games will be loaded here dynamically -->
+                    </div>
+                </div>
+
+                <div id="manage-players" class="tab-content">
+                    <div class="team-selection">
+                        <label>Izvēlēties komandu</label>
+                        <select id="team-select">
+                            <option value="ARCHERS">Archers</option>
+                            <option value="SIGULDA">Sigulda</option>
+                            <option value="PLATONE">Platone</option>
+                        </select>
+                    </div>
+
+                    <div class="players-section">
+                        <h3>Komandas spēlētāji</h3>
+                        <div class="players-list">
+                            <!-- Players will be loaded here dynamically -->
+                        </div>
+                    </div>
+
+                    <form id="add-player-form" class="admin-form">
+                        <h3>Pievienot spēlētāju</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Vārds</label>
+                                <input type="text" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Uzvārds</label>
+                                <input type="text" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Numurs</label>
+                                <input type="number" name="number" min="0" max="99" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Sit</label>
+                                <select name="bats" required>
+                                    <option value="R">Ar labo</option>
+                                    <option value="L">Ar kreiso</option>
+                                    <option value="S">Abpusēji</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Met</label>
+                                <select name="throws" required>
+                                    <option value="R">Ar labo</option>
+                                    <option value="L">Ar kreiso</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Pievienot spēlētāju
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-undo"></i> Atcelt
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="admin-actions">
+                    <button class="btn btn-primary" onclick="exportAllData()">
+                        <i class="fas fa-download"></i> Export All Data
+                    </button>
+                    <button class="btn btn-secondary" onclick="importData()">
+                        <i class="fas fa-upload"></i> Import Data
+                    </button>
+                    <button class="btn btn-secondary" onclick="addTestPlayer()">
+                        <i class="fas fa-user-plus"></i> Add Test Player
+                    </button>
+                    <button class="btn btn-secondary" onclick="debugLocalStorage()">
+                        <i class="fas fa-bug"></i> Debug Storage
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kontakti</h3>
+                    <p><i class="fas fa-envelope"></i> info@beisbolasavieniba.lv</p>
+                    <p><i class="fas fa-phone"></i> +371 XXXXXXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LBSS. Visas tiesības aizsargātas</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Game Statistics Modal -->
+    <div id="game-stats-modal" class="modal">
+        <div class="modal-content stats-modal">
+            <span class="close">&times;</span>
+            <h2>Ievadīt spēles statistiku</h2>
+            
+            <div class="game-info"></div>
+
+            <div class="team-selector">
+                <button class="team-btn active">Home Team</button>
+                <button class="team-btn">Away Team</button>
+            </div>
+
+            <div class="stats-section batting-section">
+                <h3>Sitēji</h3>
+                <button class="btn btn-primary add-player-btn">
+                    <i class="fas fa-plus"></i> Pievienot spēlētāju
+                </button>
+                <div class="stats-grid">
+                    <table class="batting-table stats-table">
+                        <thead>
+                            <tr>
+                                <th>Spēlētājs</th>
+                                <th>AB</th>
+                                <th>H</th>
+                                <th>2B</th>
+                                <th>3B</th>
+                                <th>HR</th>
+                                <th>RBI</th>
+                                <th>R</th>
+                                <th>BB</th>
+                                <th>SO</th>
+                                <th>HBP</th>
+                                <th>SF</th>
+                                <th>SAC</th>
+                                <th>SB</th>
+                                <th>CS</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Batting rows will be added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="stats-section pitching-section">
+                <h3>Metēji</h3>
+                <button class="btn btn-primary add-player-btn">
+                    <i class="fas fa-plus"></i> Pievienot spēlētāju
+                </button>
+                <div class="stats-grid">
+                    <table class="stats-table pitching-table">
+                        <thead>
+                            <tr>
+                                <th>Metējs</th>
+                                <th>IP</th>
+                                <th>H</th>
+                                <th>R</th>
+                                <th>ER</th>
+                                <th>BB</th>
+                                <th>SO</th>
+                                <th>HR</th>
+                                <th>BF</th>
+                                <th>HBP</th>
+                                <th>WP</th>
+                                <th>BK</th>
+                                <th>W</th>
+                                <th>L</th>
+                                <th>SV</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="saveGameStats()">
+                    Saglabāt statistiku
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+    <script src="game-stats.js"></script>
+    <script>
+        // EMERGENCY FIX: Direct player rendering that doesn't depend on any other code
+        // This script will directly render players without using any of the existing functions
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('EMERGENCY FIX: Direct player rendering script loaded');
+            
+            // Function to directly render players
+            function emergencyRenderPlayers() {
+                console.log('EMERGENCY: Directly rendering players');
+                
+                // Get the players container
+                const playersContainer = document.querySelector('#manage-players .players-list');
+                if (!playersContainer) {
+                    console.error('EMERGENCY: Players container not found!');
+                    return;
+                }
+                
+                // Get the current team
+                const teamSelect = document.getElementById('team-select');
+                if (!teamSelect) {
+                    console.error('EMERGENCY: Team select not found!');
+                    return;
+                }
+                
+                const teamId = teamSelect.value;
+                console.log('EMERGENCY: Rendering players for team', teamId);
+                
+                // Get players from localStorage
+                let players = [];
+                try {
+                    const playersJson = localStorage.getItem(`players_${teamId}`);
+                    console.log('EMERGENCY: Raw player data:', playersJson);
+                    
+                    if (playersJson) {
+                        players = JSON.parse(playersJson);
+                    }
+                } catch (e) {
+                    console.error('EMERGENCY: Error parsing player data:', e);
+                }
+                
+                console.log('EMERGENCY: Found', players.length, 'players');
+                
+                // Clear the container and add a header
+                playersContainer.innerHTML = '';
+                
+                // If no players, show a message
+                if (!players || players.length === 0) {
+                    playersContainer.innerHTML = `
+                        <div style="text-align: center; padding: 20px; margin-top: 20px;">
+                            <i class="fas fa-info-circle" style="font-size: 48px; color: #ddd; margin-bottom: 10px;"></i>
+                            <p>Nav pievienotu spēlētāju šai komandai</p>
+                            <button class="btn btn-primary" onclick="emergencyAddPlayer()">
+                                Pievienot testa spēlētāju (emergency)
+                            </button>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Create a simple table
+                const table = document.createElement('table');
+                table.style.width = '100%';
+                table.style.borderCollapse = 'collapse';
+                table.style.marginTop = '20px';
+                
+                // Add table header
+                const thead = document.createElement('thead');
+                thead.innerHTML = `
+                    <tr>
+                        <th style="padding: 10px; text-align: left; background: #f5f5f5; border-bottom: 2px solid #ddd;">Nr.</th>
+                        <th style="padding: 10px; text-align: left; background: #f5f5f5; border-bottom: 2px solid #ddd;">Vārds</th>
+                        <th style="padding: 10px; text-align: left; background: #f5f5f5; border-bottom: 2px solid #ddd;">Uzvārds</th>
+                        <th style="padding: 10px; text-align: left; background: #f5f5f5; border-bottom: 2px solid #ddd;">Sit</th>
+                        <th style="padding: 10px; text-align: left; background: #f5f5f5; border-bottom: 2px solid #ddd;">Met</th>
+                        <th style="padding: 10px; text-align: center; background: #f5f5f5; border-bottom: 2px solid #ddd;">Darbības</th>
+                    </tr>
+                `;
+                table.appendChild(thead);
+                
+                // Create table body
+                const tbody = document.createElement('tbody');
+                
+                // Add players to table
+                players.forEach(function(player) {
+                    const tr = document.createElement('tr');
+                    tr.style.borderBottom = '1px solid #eee';
+                    
+                    // Helper function for bats/throws display
+                    function getHandText(code) {
+                        if (code === 'R') return 'Ar labo';
+                        if (code === 'L') return 'Ar kreiso';
+                        if (code === 'S') return 'Abpusēji';
+                        return code;
+                    }
+                    
+                    tr.innerHTML = `
+                        <td style="padding: 10px;">${player.number || '-'}</td>
+                        <td style="padding: 10px;">${player.firstName || '-'}</td>
+                        <td style="padding: 10px;">${player.lastName || '-'}</td>
+                        <td style="padding: 10px;">${getHandText(player.bats)}</td>
+                        <td style="padding: 10px;">${getHandText(player.throws)}</td>
+                        <td style="padding: 10px; text-align: center;">
+                            <button 
+                                style="background: #f8f9fa; border: 1px solid #ddd; padding: 5px 10px; border-radius: 4px; margin-right: 5px; cursor: pointer;"
+                                onclick="emergencyEditPlayer('${player.id}')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button 
+                                style="background: #f8f9fa; border: 1px solid #ddd; padding: 5px 10px; border-radius: 4px; cursor: pointer;"
+                                onclick="emergencyDeletePlayer('${player.id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+                
+                table.appendChild(tbody);
+                
+                // Add player count before the table
+                const countDiv = document.createElement('div');
+                countDiv.style.margin = '10px 0';
+                countDiv.innerHTML = `<strong>Kopā: ${players.length} spēlētāji</strong>`;
+                
+                // Add reload button
+                const reloadBtn = document.createElement('button');
+                reloadBtn.className = 'btn btn-primary';
+                reloadBtn.style.marginLeft = '10px';
+                reloadBtn.innerHTML = '<i class="fas fa-sync"></i> Atjaunot sarakstu';
+                reloadBtn.onclick = emergencyRenderPlayers;
+                countDiv.appendChild(reloadBtn);
+                
+                // Add everything to the container
+                playersContainer.appendChild(countDiv);
+                playersContainer.appendChild(table);
+                
+                console.log('EMERGENCY: Players rendered successfully');
+            }
+            
+            // Add emergency functions to window
+            window.emergencyRenderPlayers = emergencyRenderPlayers;
+            
+            // Emergency function to add a test player
+            window.emergencyAddPlayer = function() {
+                const teamId = document.getElementById('team-select').value;
+                const testPlayer = {
+                    id: Date.now().toString(),
+                    firstName: "Emergency",
+                    lastName: "Player " + Math.floor(Math.random() * 100),
+                    number: Math.floor(Math.random() * 99) + 1,
+                    bats: "R",
+                    throws: "R"
+                };
+                
+                let players = [];
+                try {
+                    players = JSON.parse(localStorage.getItem(`players_${teamId}`) || '[]');
+                } catch (e) {
+                    // Force to empty array if parsing failed
+                    players = [];
+                }
+                
+                players.push(testPlayer);
+                localStorage.setItem(`players_${teamId}`, JSON.stringify(players));
+                
+                alert(`EMERGENCY: Added test player to ${teamId}`);
+                emergencyRenderPlayers();
+            };
+            
+            // Emergency function to edit a player
+            window.emergencyEditPlayer = function(playerId) {
+                const teamId = document.getElementById('team-select').value;
+                let players = [];
+                
+                try {
+                    players = JSON.parse(localStorage.getItem(`players_${teamId}`) || '[]');
+                } catch (e) {
+                    alert('Error loading players: ' + e.message);
+                    return;
+                }
+                
+                const playerToEdit = players.find(p => p.id === playerId);
+                if (!playerToEdit) {
+                    alert('Player not found');
+                    return;
+                }
+                
+                // Fill the form
+                const form = document.getElementById('add-player-form');
+                if (form) {
+                    form.querySelector('[name="firstName"]').value = playerToEdit.firstName;
+                    form.querySelector('[name="lastName"]').value = playerToEdit.lastName;
+                    form.querySelector('[name="number"]').value = playerToEdit.number;
+                    form.querySelector('[name="bats"]').value = playerToEdit.bats;
+                    form.querySelector('[name="throws"]').value = playerToEdit.throws;
+                    
+                    // Add edit ID
+                    form.dataset.emergencyEditId = playerId;
+                    
+                    // Change submit button text
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.innerHTML = '<i class="fas fa-save"></i> Saglabāt izmaiņas (Emergency)';
+                    }
+                    
+                    // Scroll to form
+                    form.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Override form submission
+                    form.onsubmit = function(e) {
+                        e.preventDefault();
+                        
+                        const formData = new FormData(this);
+                        const updatedPlayer = {
+                            id: this.dataset.emergencyEditId,
+                            firstName: formData.get('firstName'),
+                            lastName: formData.get('lastName'),
+                            number: Number(formData.get('number')),
+                            bats: formData.get('bats'),
+                            throws: formData.get('throws')
+                        };
+                        
+                        // Update player in the array
+                        const index = players.findIndex(p => p.id === updatedPlayer.id);
+                        if (index !== -1) {
+                            players[index] = updatedPlayer;
+                            
+                            // Save back to localStorage
+                            localStorage.setItem(`players_${teamId}`, JSON.stringify(players));
+                            
+                            // Reset form
+                            this.reset();
+                            delete this.dataset.emergencyEditId;
+                            submitBtn.innerHTML = '<i class="fas fa-save"></i> Pievienot spēlētāju';
+                            this.onsubmit = null;
+                            
+                            // Update display
+                            emergencyRenderPlayers();
+                            
+                            alert('Player updated successfully');
+                        }
+                    };
+                }
+            };
+            
+            // Emergency function to delete a player
+            window.emergencyDeletePlayer = function(playerId) {
+                if (!confirm('Are you sure you want to delete this player?')) return;
+                
+                const teamId = document.getElementById('team-select').value;
+                let players = [];
+                
+                try {
+                    players = JSON.parse(localStorage.getItem(`players_${teamId}`) || '[]');
+                } catch (e) {
+                    alert('Error loading players: ' + e.message);
+                    return;
+                }
+                
+                // Filter out the player to delete
+                const updatedPlayers = players.filter(p => p.id !== playerId);
+                
+                // Save back to localStorage
+                localStorage.setItem(`players_${teamId}`, JSON.stringify(updatedPlayers));
+                
+                // Update display
+                emergencyRenderPlayers();
+                
+                alert('Player deleted successfully');
+            };
+            
+            // Setup emergency renderers
+            setTimeout(function() {
+                console.log('EMERGENCY: Setting up event handlers');
+                
+                // Call renderer when the players tab is clicked
+                const playerTabBtn = document.querySelector('[onclick="showTab(\'manage-players\')"]');
+                if (playerTabBtn) {
+                    console.log('EMERGENCY: Found player tab button, adding event listener');
+                    playerTabBtn.addEventListener('click', function() {
+                        console.log('EMERGENCY: Player tab clicked');
+                        setTimeout(emergencyRenderPlayers, 100);
+                    });
+                }
+                
+                // Setup team select change handler
+                const teamSelect = document.getElementById('team-select');
+                if (teamSelect) {
+                    console.log('EMERGENCY: Found team select, adding event listener');
+                    teamSelect.addEventListener('change', function() {
+                        console.log('EMERGENCY: Team changed to ' + this.value);
+                        emergencyRenderPlayers();
+                    });
+                }
+                
+                // Add Emergency Render button to the team selection div
+                const teamSelection = document.querySelector('.team-selection');
+                if (teamSelection) {
+                    console.log('EMERGENCY: Adding emergency render button');
+                    const emergencyBtn = document.createElement('button');
+                    emergencyBtn.className = 'btn btn-danger';
+                    emergencyBtn.style.marginLeft = '10px';
+                    emergencyBtn.style.backgroundColor = 'red';
+                    emergencyBtn.style.color = 'white';
+                    emergencyBtn.innerHTML = 'EMERGENCY RENDER';
+                    emergencyBtn.onclick = emergencyRenderPlayers;
+                    teamSelection.appendChild(emergencyBtn);
+                }
+                
+                // If manage-players tab is already visible, render players immediately
+                const managePlayers = document.getElementById('manage-players');
+                if (managePlayers && managePlayers.style.display === 'block') {
+                    console.log('EMERGENCY: Players tab is visible, rendering immediately');
+                    emergencyRenderPlayers();
+                }
+                
+                // Always render players after 2 seconds
+                setTimeout(function() {
+                    const managePlayers = document.getElementById('manage-players');
+                    if (managePlayers) {
+                        console.log('EMERGENCY: Forcing players tab visibility and rendering after 2 seconds');
+                        managePlayers.style.display = 'block';
+                        document.querySelectorAll('.tab-content').forEach(el => {
+                            if (el.id !== 'manage-players') {
+                                el.style.display = 'none';
+                            }
+                        });
+                        emergencyRenderPlayers();
+                    }
+                }, 2000);
+            }, 300);
+        });
+        
+        // Direct debug panel that will show localStorage info
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                // Create a visible debug panel
+                const debugPanel = document.createElement('div');
+                debugPanel.style.position = 'fixed';
+                debugPanel.style.top = '0';
+                debugPanel.style.right = '0';
+                debugPanel.style.width = '300px';
+                debugPanel.style.maxHeight = '300px';
+                debugPanel.style.overflow = 'auto';
+                debugPanel.style.background = 'rgba(0,0,0,0.8)';
+                debugPanel.style.color = 'white';
+                debugPanel.style.padding = '10px';
+                debugPanel.style.zIndex = '9999';
+                debugPanel.style.fontSize = '12px';
+                debugPanel.style.fontFamily = 'monospace';
+                debugPanel.style.borderBottomLeftRadius = '10px';
+                
+                // Show localStorage contents
+                let html = '<h3 style="margin:0;color:yellow">Local Storage Debug</h3>';
+                
+                // Check player keys
+                const playerKeys = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key.startsWith('players_')) {
+                        playerKeys.push(key);
+                    }
+                }
+                
+                html += `<p><strong>Player keys:</strong> ${playerKeys.length}</p>`;
+                
+                // Show player data
+                playerKeys.forEach(key => {
+                    try {
+                        const data = JSON.parse(localStorage.getItem(key));
+                        html += `<p><strong>${key}:</strong> ${data.length} players</p>`;
+                    } catch (e) {
+                        html += `<p><strong>${key}:</strong> ERROR: ${e.message}</p>`;
+                    }
+                });
+                
+                // Add a direct add button for current team
+                html += '<div style="margin-top:10px">';
+                html += '<button onclick="debugAddPlayer()" style="background:green;color:white;border:none;padding:5px;cursor:pointer;margin-right:5px">Add Test Player</button>';
+                html += '<button onclick="debugClearStorage()" style="background:red;color:white;border:none;padding:5px;cursor:pointer">Clear Storage</button>';
+                html += '</div>';
+                
+                // Add emergency button
+                html += '<div style="margin-top:10px">';
+                html += '<button onclick="emergencyRenderPlayers()" style="background:red;color:white;border:none;padding:5px;cursor:pointer;width:100%">🚨 EMERGENCY RENDER 🚨</button>';
+                html += '</div>';
+                
+                debugPanel.innerHTML = html;
+                document.body.appendChild(debugPanel);
+                
+                // Add global debug functions
+                window.debugAddPlayer = function() {
+                    const teamId = document.getElementById('team-select').value;
+                    const testPlayer = {
+                        id: Date.now().toString(),
+                        firstName: "Debug",
+                        lastName: "Player " + Math.floor(Math.random() * 100),
+                        number: Math.floor(Math.random() * 99) + 1,
+                        bats: "R",
+                        throws: "R"
+                    };
+                    
+                    let players = [];
+                    try {
+                        players = JSON.parse(localStorage.getItem(`players_${teamId}`) || '[]');
+                    } catch (e) {
+                        // Force to empty array if parsing failed
+                        players = [];
+                    }
+                    
+                    players.push(testPlayer);
+                    localStorage.setItem(`players_${teamId}`, JSON.stringify(players));
+                    
+                    alert(`Added debug player to ${teamId}. Refreshing...`);
+                    window.location.reload();
+                };
+                
+                window.debugClearStorage = function() {
+                    if (confirm('This will clear ALL localStorage data. Continue?')) {
+                        localStorage.clear();
+                        alert('Storage cleared. Refreshing...');
+                        window.location.reload();
+                    }
+                };
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 

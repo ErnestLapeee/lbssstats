@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Browser Cache</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .instructions {
+            margin-top: 20px;
+            border-left: 4px solid #4CAF50;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clear Browser Cache</h1>
+    <div class="container">
+        <p>If you're experiencing issues with updated JavaScript files not loading properly, you can try clearing your browser cache using the methods below:</p>
+        
+        <h2>Quick Cache Clear</h2>
+        <button onclick="clearCache()">Clear JavaScript Cache</button>
+        <button onclick="location.reload(true)">Hard Reload</button>
+        <button onclick="window.location.href='league-stats.html'">Return to Stats Page</button>
+        
+        <div class="instructions">
+            <h3>Manual Browser Cache Clearing Instructions:</h3>
+            <h4>Chrome:</h4>
+            <ol>
+                <li>Press Ctrl+Shift+Del (Windows) or Cmd+Shift+Del (Mac)</li>
+                <li>Select "Cached images and files"</li>
+                <li>Click "Clear data"</li>
+            </ol>
+            
+            <h4>Firefox:</h4>
+            <ol>
+                <li>Press Ctrl+Shift+Del (Windows) or Cmd+Shift+Del (Mac)</li>
+                <li>Select "Cache"</li>
+                <li>Click "Clear Now"</li>
+            </ol>
+            
+            <h4>Safari:</h4>
+            <ol>
+                <li>Press Option+Command+E</li>
+                <li>Or go to Safari → Preferences → Advanced and check "Show Develop menu in menu bar"</li>
+                <li>Then go to Develop → Empty Caches</li>
+            </ol>
+            
+            <h4>Edge:</h4>
+            <ol>
+                <li>Press Ctrl+Shift+Del</li>
+                <li>Select "Cached images and files"</li>
+                <li>Click "Clear"</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        function clearCache() {
+            // Add a version parameter to force reload of the JavaScript file
+            const cacheBuster = new Date().getTime();
+            const scriptElement = document.createElement('script');
+            scriptElement.src = `league-stats.js?v=${cacheBuster}`;
+            document.head.appendChild(scriptElement);
+            
+            // Force reload of the page after a short delay
+            setTimeout(() => {
+                window.location.href = `league-stats.html?v=${cacheBuster}`;
+            }, 1000);
+            
+            alert("Cache cleared! The page will reload in a moment.");
+        }
+    </script>
+</body>
+</html> 

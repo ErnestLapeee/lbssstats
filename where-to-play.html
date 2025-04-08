@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kur Spēlēt? - Latvijas Beisbola un Softbola savienība</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.jpg" alt="LBSS Logo">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Sākumlapa</a>
+                <a href="league-standings.html">Latvijas Beisbola Līga</a>
+                <a href="index.html#youth">Bērnu un Jauniešu Līga</a>
+                <a href="#" class="active">Kur spēlēt?</a>
+                <a href="index.html#documents">Dokumenti</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Kur Spēlēt?</h1>
+            <p>Pievienojies kādam no Latvijas beisbola klubiem</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="locations-section">
+            <div class="container">
+                <div class="locations-grid">
+                    <div class="location-card">
+                        <div class="location-image">
+                            <img src="platone.jpg" alt="BK Platone">
+                        </div>
+                        <div class="location-info">
+                            <h3>Beisbola klubs "Platone"</h3>
+                            <p><i class="fas fa-baseball-ball"></i> Pieaugušo komanda</p>
+                            <button class="btn btn-primary" onclick="openModal('platone-modal')">Info</button>
+                        </div>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-image">
+                            <img src="archers.jpg" alt="BK Archers">
+                        </div>
+                        <div class="location-info">
+                            <h3>Beisbola klubs "Archers"</h3>
+                            <p><i class="fas fa-baseball-ball"></i> Pieaugušo komanda</p>
+                            <button class="btn btn-primary" onclick="openModal('archers-modal')">Info</button>
+                        </div>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-image">
+                            <img src="sigulda.jpg" alt="BK Sigulda">
+                        </div>
+                        <div class="location-info">
+                            <h3>Beisbola klubs "Sigulda"</h3>
+                            <p><i class="fas fa-baseball-ball"></i> Pieaugušo komanda</p>
+                            <p><i class="fas fa-child"></i> Bērnu komanda</p>
+                            <button class="btn btn-primary" onclick="openModal('sigulda-modal')">Info</button>
+                        </div>
+                    </div>
+
+                    <div class="location-card academy-card">
+                        <div class="location-image">
+                            <img src="academy.jpg" alt="Beisbola Akadēmija">
+                        </div>
+                        <div class="location-info">
+                            <h3>Beisbola Akadēmija</h3>
+                            <div class="teams-list">
+                                <p><i class="fas fa-child"></i> Bērnu komanda "Red Bulls"</p>
+                                <p><i class="fas fa-child"></i> Bērnu komanda "Platone/BA"</p>
+                            </div>
+                            <a href="https://www.beisbolaakademija.lv/uznemsana" target="_blank" class="btn btn-primary">Pieteikties</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modals -->
+        <div id="platone-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('platone-modal')">&times;</span>
+                <h2>Beisbola klubs "Platone"</h2>
+                <div class="modal-info">
+                    <div class="info-section">
+                        <h3><i class="fas fa-trophy"></i> Sasniegumi</h3>
+                        <p>Latvijas čempioni: 0 reizes</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-map-marker-alt"></i> Atrašanās vieta</h3>
+                        <p>Platones pagasts, Jelgavas novads</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-user"></i> Treneri</h3>
+                        <p>Galvenais treneris: <a href="tel:+37120000001">+371 20000001</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="archers-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('archers-modal')">&times;</span>
+                <h2>Beisbola klubs "Archers"</h2>
+                <div class="modal-info">
+                    <div class="info-section">
+                        <h3><i class="fas fa-trophy"></i> Sasniegumi</h3>
+                        <p>Latvijas čempioni: 2 reizes (2023, 2024)</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-map-marker-alt"></i> Atrašanās vieta</h3>
+                        <p>Rīga</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-user"></i> Treneri</h3>
+                        <p>Galvenais treneris: <a href="tel:+37120000002">+371 20000002</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sigulda-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('sigulda-modal')">&times;</span>
+                <h2>Beisbola klubs "Sigulda"</h2>
+                <div class="modal-info">
+                    <div class="info-section">
+                        <h3><i class="fas fa-trophy"></i> Sasniegumi</h3>
+                        <p>Latvijas čempioni: 0 reizes</p>
+                        <p>Siguldas kausa ieguvēji: 2023</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-map-marker-alt"></i> Atrašanās vieta</h3>
+                        <p>Sigulda</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-user"></i> Treneri</h3>
+                        <p>Pieaugušo treneris: <a href="tel:+37120000003">+371 20000003</a></p>
+                        <p>Bērnu treneris: <a href="tel:+37120000004">+371 20000004</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="academy-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('academy-modal')">&times;</span>
+                <h2>Beisbola Akadēmija</h2>
+                <div class="modal-info">
+                    <div class="info-section">
+                        <h3><i class="fas fa-child"></i> Komandas</h3>
+                        <p>Red Bulls</p>
+                        <p>Platone/BA</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-map-marker-alt"></i> Atrašanās vieta</h3>
+                        <p>Rīga</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-user"></i> Treneri</h3>
+                        <p>Red Bulls treneris: <a href="tel:+37120000005">+371 20000005</a></p>
+                        <p>Platone/BA treneris: <a href="tel:+37120000006">+371 20000006</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kontakti</h3>
+                    <p><i class="fas fa-envelope"></i> info@beisbolasavieniba.lv</p>
+                    <p><i class="fas fa-phone"></i> +371 XXXXXXXX</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Ātrās Saites</h3>
+                    <a href="index.html#league"><i class="fas fa-baseball-ball"></i> Latvijas Līga</a>
+                    <a href="index.html#youth"><i class="fas fa-child"></i> Jauniešu Līga</a>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i> Kur Spēlēt</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Par Mums</h3>
+                    <a href="index.html#documents">Dokumenti</a>
+                    <a href="index.html#contacts">Kontakti</a>
+                    <a href="index.html#about">Par LBSS</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LBSS. Visas tiesības aizsargātas</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spēļu kalendārs - Latvijas Beisbola Līga</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="league-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for game cards */
+        .game-teams {
+            grid-template-columns: minmax(95px, 1.2fr) 80px minmax(95px, 1.2fr) !important;
+            gap: 0.5rem !important;
+        }
+        
+        .game-teams .team {
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            min-width: 0 !important;
+            font-size: 1.0rem !important;
+            padding: 0.5rem 0.25rem !important;
+            letter-spacing: -0.2px !important;
+        }
+        
+        .game-teams .score {
+            min-width: 80px !important;
+            padding: 0.5rem 0.5rem !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="league-schedule.html">
+                    <img src="logo.jpg" alt="LBSS Logo">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Sākumlapa</a>
+                <a href="league.html">Latvijas Beisbola Līga</a>
+                <a href="index.html#youth">Bērnu un Jauniešu Līga</a>
+                <a href="where-to-play.html">Kur spēlēt?</a>
+                <a href="index.html#documents">Dokumenti</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Spēļu kalendārs</h1>
+            <p>2024. gada sezona</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="league-nav">
+            <div class="container">
+                <div class="league-nav-links">
+                    <a href="league-standings.html" class="league-nav-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Turnīra tabula</span>
+                    </a>
+                    <a href="league-schedule.html" class="league-nav-item active">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Spēļu kalendārs</span>
+                    </a>
+                    <a href="league-stats.html" class="league-nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Statistika</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="schedule-section">
+            <div class="container">
+                <div class="tournament-stages">
+                    <!-- I Posms -->
+                    <div class="tournament-stage">
+                        <div class="stage-header">
+                            <h2>I. POSMS</h2>
+                            <div class="stage-info">
+                                <span><i class="fas fa-calendar"></i> 26. maijs</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Rīga, LU beisbola laukums</span>
+                            </div>
+                        </div>
+                        <div class="stage-games">
+                            <div class="game-card" onclick="openGameStatsModal('game-1')">
+                                <div class="game-time">11:00</div>
+                                <div class="game-teams">
+                                    <div class="team" title="ARCHERS">ARCHERS</div>
+                                    <div class="score">13 <span class="score-separator">-</span> 16</div>
+                                    <div class="team" title="SIGULDA">SIGULDA</div>
+                                </div>
+                                <div class="game-details-btn">
+                                    <i class="fas fa-chart-bar"></i> Statistika
+                                </div>
+                            </div>
+                            <div class="game-card" onclick="openGameStatsModal('game-2')">
+                                <div class="game-time">13:00</div>
+                                <div class="game-teams">
+                                    <div class="team" title="SIGULDA">SIGULDA</div>
+                                    <div class="score">6 <span class="score-separator">-</span> 7</div>
+                                    <div class="team" title="PLATONE">PLATONE</div>
+                                </div>
+                                <div class="game-details-btn">
+                                    <i class="fas fa-chart-bar"></i> Statistika
+                                </div>
+                            </div>
+                            <div class="game-card" onclick="openGameStatsModal('game-3')">
+                                <div class="game-time">15:00</div>
+                                <div class="game-teams">
+                                    <div class="team" title="PLATONE">PLATONE</div>
+                                    <div class="score">2 <span class="score-separator">-</span> 15</div>
+                                    <div class="team" title="ARCHERS">ARCHERS</div>
+                                </div>
+                                <div class="game-details-btn">
+                                    <i class="fas fa-chart-bar"></i> Statistika
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more stages following the same pattern -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Game Statistics Modal -->
+    <div id="game-stats-modal" class="modal">
+        <div class="modal-content stats-modal">
+            <span class="close">&times;</span>
+            <h2>Spēles statistika</h2>
+            
+            <div class="game-info"></div>
+
+            <div class="team-selector">
+                <button class="team-btn active">Home Team</button>
+                <button class="team-btn">Away Team</button>
+            </div>
+
+            <div class="stats-section batting-section">
+                <h3>Sitēji</h3>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Spēlētājs</th>
+                            <th>AB</th>
+                            <th>H</th>
+                            <th>2B</th>
+                            <th>3B</th>
+                            <th>HR</th>
+                            <th>RBI</th>
+                            <th>R</th>
+                            <th>BB</th>
+                            <th>SO</th>
+                            <th>HBP</th>
+                            <th>SF</th>
+                            <th>SAC</th>
+                            <th>SB</th>
+                            <th>CS</th>
+                            <th>AVG</th>
+                            <th>OBP</th>
+                            <th>SLG</th>
+                            <th>OPS</th>
+                        </tr>
+                    </thead>
+                    <tbody class="batting-stats">
+                        <!-- Batting stats will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="stats-section">
+                <h3>Metēju statistika</h3>
+                <div class="stats-grid">
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>Metējs</th>
+                                <th>IP</th>
+                                <th>H</th>
+                                <th>R</th>
+                                <th>ER</th>
+                                <th>BB</th>
+                                <th>SO</th>
+                                <th>HR</th>
+                                <th>BF</th>
+                                <th>HBP</th>
+                                <th>WP</th>
+                                <th>BK</th>
+                                <th>W</th>
+                                <th>L</th>
+                                <th>SV</th>
+                                <th>ERA</th>
+                                <th>WHIP</th>
+                                <th>K/9</th>
+                                <th>BB/9</th>
+                            </tr>
+                        </thead>
+                        <tbody class="pitching-stats"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Player dropdown template -->
+    <div id="player-dropdown-template" style="display: none;">
+        <div class="player-dropdown">
+            <input type="text" class="player-search" placeholder="Search player...">
+            <div class="player-list"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kontakti</h3>
+                    <p><i class="fas fa-envelope"></i> info@beisbolasavieniba.lv</p>
+                    <p><i class="fas fa-phone"></i> +371 XXXXXXXX</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Ātrās Saites</h3>
+                    <a href="league-standings.html"><i class="fas fa-trophy"></i> Turnīra tabula</a>
+                    <a href="league-schedule.html"><i class="fas fa-calendar-alt"></i> Spēļu kalendārs</a>
+                    <a href="league-stats.html"><i class="fas fa-chart-bar"></i> Statistika</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Par Mums</h3>
+                    <a href="index.html#documents">Dokumenti</a>
+                    <a href="index.html#contacts">Kontakti</a>
+                    <a href="index.html#about">Par LBSS</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LBSS. Visas tiesības aizsargātas</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load CSS files -->
+    <link rel="stylesheet" href="game-stats.css">
+
+    <!-- Load JavaScript files -->
+    <script src="script.js"></script>
+    <script src="game-stats.js"></script>
+    <script src="league-schedule.js"></script>
+</body>
+</html> 

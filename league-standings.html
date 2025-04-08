@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turnīra tabula - Latvijas Beisbola Līga</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="league-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+        main {
+            flex: 1;
+        }
+        footer {
+            margin-top: auto;
+        }
+        /* Enhanced modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+        
+        .modal.show {
+            display: flex !important;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 1200px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease-out;
+            margin: auto;
+        }
+        
+        .player-modal {
+            padding: 2rem;
+        }
+        
+        .player-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .player-info h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stats-tabs {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tab-btn {
+            padding: 0.6rem 1.2rem;
+            background: var(--light-gray);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .sort-by {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+        }
+        
+        .games-stats {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .games-stats h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .game-stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .game-stats-table th, 
+        .game-stats-table td {
+            padding: 0.8rem;
+            text-align: center;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .game-stats-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .game-stats-table th:hover {
+            background-color: #8a1729;
+        }
+        
+        .game-stats-table th.sort-asc::after {
+            content: ' ↑';
+        }
+        
+        .game-stats-table th.sort-desc::after {
+            content: ' ↓';
+        }
+        
+        .game-stats-table td:first-child,
+        .game-stats-table th:first-child {
+            text-align: left;
+        }
+        
+        .game-stats-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .game-stats-table tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .player-stats-view {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        
+        .roster-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            position: relative;
+            max-height: 60vh;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .stats-value {
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .team-roster-modal {
+            max-width: 95%;
+            width: 1400px;
+        }
+        .team-roster-modal .modal-content {
+            max-width: 100%;
+            padding: 2rem;
+        }
+        .team-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .team-header h2 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+        }
+        .stats-filter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 10;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .stats-tabs {
+            display: flex;
+            gap: 0.8rem;
+        }
+        .stats-tab {
+            padding: 0.6rem 1.2rem;
+            background: var(--light-gray);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .stats-tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .sort-by {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+        }
+        .roster-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .roster-table th, 
+        .roster-table td {
+            padding: 0.6rem 0.4rem;
+            text-align: center;
+            border-bottom: 1px solid var(--light-gray);
+            white-space: nowrap;
+        }
+        .roster-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .roster-table th:hover {
+            background-color: #8a1729;
+        }
+        .roster-table th.sort-asc::after {
+            content: ' ↑';
+        }
+        .roster-table th.sort-desc::after {
+            content: ' ↓';
+        }
+        .roster-table td:first-child,
+        .roster-table th:first-child {
+            text-align: left;
+            position: sticky;
+            left: 0;
+            background-color: white;
+            z-index: 1;
+            min-width: 150px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+        .roster-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .roster-table tr:hover {
+            background-color: #f0f0f0;
+        }
+        .no-players {
+            text-align: center;
+            padding: 2rem;
+            color: #777;
+        }
+        .stats-value {
+            min-width: 50px;
+            max-width: 60px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+        }
+        .player-stats-view {
+            max-height: none;
+            overflow: visible;
+            padding-bottom: 20px;
+        }
+        /* Fix sticky header for first column */
+        .roster-table th:first-child {
+            z-index: 3;
+            left: 0;
+            background-color: var(--primary-color);
+        }
+        /* Fix background color for even rows' first cells */
+        .roster-table tr:nth-child(even) td:first-child {
+            background-color: #f9f9f9;
+        }
+        @media (max-width: 768px) {
+            .team-roster-modal {
+                width: 98%;
+                max-width: none;
+            }
+            .team-roster-modal .modal-content {
+                padding: 1rem;
+            }
+            .roster-container {
+                max-height: 70vh;
+            }
+            .team-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .stats-filter {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .roster-table {
+                font-size: 0.9rem;
+            }
+        }
+        /* Add styles for column highlighting and standout stats */
+        /* Highlighted column style */
+        .highlight-column {
+            background-color: rgba(200, 50, 50, 0.08) !important;
+        }
+        
+        /* Standout statistics */
+        .standout-stat {
+            color: #c00;
+            font-weight: bold;
+        }
+        
+        /* Even row cells */
+        .roster-table tr:nth-child(even) .highlight-column {
+            background-color: rgba(200, 50, 50, 0.12) !important;
+        }
+        
+        /* Make sure the sticky header/columns stay in place when scrolling */
+        .roster-container {
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+        
+        /* More space for the modal on large screens */
+        @media (min-width: 1400px) {
+            .team-roster-modal {
+                width: 1600px;
+            }
+        }
+        
+        /* Additional styling for better readability */
+        .no-players {
+            text-align: center;
+            padding: 2rem;
+            color: #777;
+        }
+        
+        .no-players i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .no-players p {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="league-standings.html">
+                    <img src="logo.jpg" alt="LBSS Logo">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Sākumlapa</a>
+                <a href="league-standings.html">Latvijas Beisbola Līga</a>
+                <a href="index.html#youth">Bērnu un Jauniešu Līga</a>
+                <a href="where-to-play.html">Kur spēlēt?</a>
+                <a href="index.html#documents">Dokumenti</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Turnīra tabula</h1>
+            <p>2024. gada sezona</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="league-nav">
+            <div class="container">
+                <div class="league-nav-links">
+                    <a href="league-standings.html" class="league-nav-item active">
+                        <i class="fas fa-trophy"></i>
+                        <span>Turnīra tabula</span>
+                    </a>
+                    <a href="league-schedule.html" class="league-nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Spēļu kalendārs</span>
+                    </a>
+                    <a href="league-stats.html" class="league-nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Statistika</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="standings-section">
+            <div class="container">
+                <div class="standings-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Vieta</th>
+                                <th>Komanda</th>
+                                <th>Spēles</th>
+                                <th>Uzvaras</th>
+                                <th>Zaudējumi</th>
+                                <th>Procenti</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Standings will be loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Team Roster Modal -->
+    <div id="team-roster-modal" class="modal">
+        <div class="modal-content player-modal">
+            <span class="close">&times;</span>
+            <div class="player-header">
+                <div class="player-info">
+                    <div class="player-info-header">
+                        <div>
+                            <h2 id="team-name">Komandas Sastāvs</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-tabs">
+                <button class="tab-btn active" data-stats-type="batting">Sitēji</button>
+                <button class="tab-btn" data-stats-type="pitching">Metēji</button>
+            </div>
+            
+            <div class="sort-options">
+                <label for="sort-by">Kārtot pēc:</label>
+                <select id="sort-by" class="sort-by">
+                    <!-- Options will be populated based on stats type -->
+                </select>
+            </div>
+
+            <div id="team-batting-stats" class="player-stats-view">
+                <div class="games-stats">
+                    <h3>Komandas statistika</h3>
+                    <div class="roster-container">
+                        <table class="game-stats-table roster-table">
+                            <thead>
+                                <!-- Headers will be generated dynamically based on stats type -->
+                            </thead>
+                            <tbody>
+                                <!-- Player stats will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="team-pitching-stats" class="player-stats-view" style="display: none;">
+                <div class="games-stats">
+                    <h3>Komandas statistika</h3>
+                    <div class="roster-container">
+                        <table class="game-stats-table roster-table">
+                            <thead>
+                                <!-- Headers will be generated dynamically based on stats type -->
+                            </thead>
+                            <tbody>
+                                <!-- Player stats will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kontakti</h3>
+                    <p><i class="fas fa-envelope"></i> info@beisbolasavieniba.lv</p>
+                    <p><i class="fas fa-phone"></i> +371 XXXXXXXX</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Ātrās Saites</h3>
+                    <a href="league-standings.html"><i class="fas fa-trophy"></i> Turnīra tabula</a>
+                    <a href="league-schedule.html"><i class="fas fa-calendar-alt"></i> Spēļu kalendārs</a>
+                    <a href="league-stats.html"><i class="fas fa-chart-bar"></i> Statistika</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Par Mums</h3>
+                    <a href="index.html#documents">Dokumenti</a>
+                    <a href="index.html#contacts">Kontakti</a>
+                    <a href="index.html#about">Par LBSS</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LBSS. Visas tiesības aizsargātas</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="league-standings.js"></script>
+</body>
+</html> 

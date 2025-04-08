@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistika - Latvijas Beisbola Līga</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="league-styles.css">
+    <link rel="stylesheet" href="game-stats.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="league-stats.html">
+                    <img src="logo.jpg" alt="LBSS Logo">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Sākumlapa</a>
+                <a href="league-standings.html">Latvijas Beisbola Līga</a>
+                <a href="index.html#youth">Bērnu un Jauniešu Līga</a>
+                <a href="where-to-play.html">Kur spēlēt?</a>
+                <a href="index.html#documents">Dokumenti</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Statistika</h1>
+            <p>2024. gada sezona</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="league-nav">
+            <div class="container">
+                <div class="league-nav-links">
+                    <a href="league-standings.html" class="league-nav-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Turnīra tabula</span>
+                    </a>
+                    <a href="league-schedule.html" class="league-nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Spēļu kalendārs</span>
+                    </a>
+                    <a href="league-stats.html" class="league-nav-item active">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Statistika</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-header">
+                    <div class="stats-filters">
+                        <div class="stats-type-selector">
+                            <button class="stats-btn active" id="batting-btn">
+                                <i class="fas fa-baseball-ball"></i>
+                                Sitēji
+                            </button>
+                            <button class="stats-btn" id="pitching-btn">
+                                <i class="fas fa-baseball"></i>
+                                Pičeri
+                            </button>
+                        </div>
+                        
+                        <div class="team-filter">
+                            <div class="select-wrapper">
+                                <i class="fas fa-users"></i>
+                                <select id="team-filter">
+                                    <option value="">Visas komandas</option>
+                                    <option value="ARCHERS">Archers</option>
+                                    <option value="SIGULDA">Sigulda</option>
+                                    <option value="PLATONE">Platone</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-tables">
+                    <div id="batting-stats" class="stats-table-container">
+                        <h2>Sitēju statistika</h2>
+                        <table class="stats-table">
+                            <thead>
+                                <tr>
+                                    <th data-stat="name" onclick="sortStats('batting', 'name')">Spēlētājs</th>
+                                    <th data-stat="team" onclick="sortStats('batting', 'team')">Komanda</th>
+                                    <th data-stat="AB" onclick="sortStats('batting', 'AB')">AB</th>
+                                    <th data-stat="H" onclick="sortStats('batting', 'H')">H</th>
+                                    <th data-stat="2B" onclick="sortStats('batting', '2B')">2B</th>
+                                    <th data-stat="3B" onclick="sortStats('batting', '3B')">3B</th>
+                                    <th data-stat="HR" onclick="sortStats('batting', 'HR')">HR</th>
+                                    <th data-stat="RBI" onclick="sortStats('batting', 'RBI')">RBI</th>
+                                    <th data-stat="R" onclick="sortStats('batting', 'R')">R</th>
+                                    <th data-stat="BB" onclick="sortStats('batting', 'BB')">BB</th>
+                                    <th data-stat="SO" onclick="sortStats('batting', 'SO')">SO</th>
+                                    <th data-stat="HBP" onclick="sortStats('batting', 'HBP')">HBP</th>
+                                    <th data-stat="SF" onclick="sortStats('batting', 'SF')">SF</th>
+                                    <th data-stat="SAC" onclick="sortStats('batting', 'SAC')">SAC</th>
+                                    <th data-stat="SB" onclick="sortStats('batting', 'SB')">SB</th>
+                                    <th data-stat="CS" onclick="sortStats('batting', 'CS')">CS</th>
+                                    <th data-stat="AVG" onclick="sortStats('batting', 'AVG')">AVG</th>
+                                    <th data-stat="OBP" onclick="sortStats('batting', 'OBP')">OBP</th>
+                                    <th data-stat="SLG" onclick="sortStats('batting', 'SLG')">SLG</th>
+                                    <th data-stat="OPS" onclick="sortStats('batting', 'OPS')">OPS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="batting-stats-body">
+                                <!-- Batting stats will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="pitching-stats" class="stats-table-container" style="display: none;">
+                        <h2>Pičeru statistika</h2>
+                        <table class="stats-table">
+                            <thead>
+                                <tr>
+                                    <th data-stat="name" onclick="sortStats('pitching', 'name')">Pičers</th>
+                                    <th data-stat="team" onclick="sortStats('pitching', 'team')">Komanda</th>
+                                    <th data-stat="IP" onclick="sortStats('pitching', 'IP')">IP</th>
+                                    <th data-stat="H" onclick="sortStats('pitching', 'H')">H</th>
+                                    <th data-stat="R" onclick="sortStats('pitching', 'R')">R</th>
+                                    <th data-stat="ER" onclick="sortStats('pitching', 'ER')">ER</th>
+                                    <th data-stat="BB" onclick="sortStats('pitching', 'BB')">BB</th>
+                                    <th data-stat="SO" onclick="sortStats('pitching', 'SO')">SO</th>
+                                    <th data-stat="HR" onclick="sortStats('pitching', 'HR')">HR</th>
+                                    <th data-stat="BF" onclick="sortStats('pitching', 'BF')">BF</th>
+                                    <th data-stat="HBP" onclick="sortStats('pitching', 'HBP')">HBP</th>
+                                    <th data-stat="WP" onclick="sortStats('pitching', 'WP')">WP</th>
+                                    <th data-stat="BK" onclick="sortStats('pitching', 'BK')">BK</th>
+                                    <th data-stat="W" onclick="sortStats('pitching', 'W')">W</th>
+                                    <th data-stat="L" onclick="sortStats('pitching', 'L')">L</th>
+                                    <th data-stat="SV" onclick="sortStats('pitching', 'SV')">SV</th>
+                                    <th data-stat="ERA" onclick="sortStats('pitching', 'ERA')">ERA</th>
+                                    <th data-stat="WHIP" onclick="sortStats('pitching', 'WHIP')">WHIP</th>
+                                    <th data-stat="K/9" onclick="sortStats('pitching', 'K/9')">K/9</th>
+                                    <th data-stat="BB/9" onclick="sortStats('pitching', 'BB/9')">BB/9</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pitching-stats-body">
+                                <!-- Pitching stats will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kontakti</h3>
+                    <p><i class="fas fa-envelope"></i> info@beisbolasavieniba.lv</p>
+                    <p><i class="fas fa-phone"></i> +371 XXXXXXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LBSS. Visas tiesības aizsargātas</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="game-stats.js"></script>
+    <script src="league-stats.js"></script>
+
+    <!-- Add this before the closing body tag -->
+    <div id="player-details-modal" class="modal">
+        <div class="modal-content player-modal">
+            <span class="close">&times;</span>
+            <div class="player-header">
+                <div class="player-info">
+                    <div class="player-info-header">
+                        <div>
+                            <h2><span id="player-name"></span></h2>
+                            <p><i class="fas fa-jersey"></i> #<span id="player-number"></span></p>
+                            <p><i class="fas fa-users"></i> <span id="player-team"></span></p>
+                            <p>
+                                <i class="fas fa-baseball-ball"></i> Sit: <span id="player-bats"></span> | 
+                                <i class="fas fa-baseball"></i> Met: <span id="player-throws"></span>
+                            </p>
+                        </div>
+                        <div class="team-logo-container">
+                            <img id="player-team-logo" src="" alt="Team Logo" class="team-logo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-tabs">
+                <button class="tab-btn active" id="batting-tab-btn">Sitēja Statistika</button>
+                <button class="tab-btn" id="pitching-tab-btn">Pičera Statistika</button>
+            </div>
+
+            <div id="player-batting-stats" class="player-stats-view">
+                <div class="games-stats">
+                    <h3>Statistika pa spēlēm</h3>
+                    <div class="games-list" id="batting-games-stats"></div>
+                </div>
+            </div>
+
+            <div id="player-pitching-stats" class="player-stats-view" style="display: none;">
+                <div class="games-stats">
+                    <h3>Statistika pa spēlēm</h3>
+                    <div class="games-list" id="pitching-games-stats"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

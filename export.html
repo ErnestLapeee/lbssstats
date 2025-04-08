@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datu eksportēšana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        pre {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Datu eksportēšana</h1>
+    <div class="container">
+        <p>Šeit varat eksportēt visus datus no lokālās krātuves:</p>
+        <button onclick="exportData()">Eksportēt datus</button>
+        <div id="output" style="margin-top: 20px;">
+            <p>Eksportētie dati parādīsies zemāk:</p>
+            <pre id="dataOutput"></pre>
+        </div>
+    </div>
+
+    <script>
+        function exportData() {
+            // Collect all local storage data
+            const exportData = {};
+            
+            // Get all keys from localStorage
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                try {
+                    exportData[key] = JSON.parse(localStorage.getItem(key));
+                } catch (e) {
+                    exportData[key] = localStorage.getItem(key);
+                }
+            }
+
+            // Display the data
+            document.getElementById('dataOutput').textContent = JSON.stringify(exportData, null, 2);
+
+            // Create download link
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'stats.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html> 

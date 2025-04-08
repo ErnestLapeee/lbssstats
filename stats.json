@@ -1,0 +1,4500 @@
+{
+  "baseballStats": {
+    "baseballStats": {
+      "baseballStats": {
+        "baseballStats": {
+          "stats_1744020701894": {
+            "SIGULDA": {
+              "batting": {},
+              "pitching": {}
+            },
+            "ARCHERS": {
+              "batting": {
+                "1743871896725": {
+                  "AB": 1,
+                  "H": 1,
+                  "2B": 0,
+                  "3B": 0,
+                  "HR": 0,
+                  "RBI": 0,
+                  "R": 0,
+                  "BB": 0,
+                  "SO": 0,
+                  "HBP": 0,
+                  "SF": 0,
+                  "SAC": 0,
+                  "SB": 0,
+                  "CS": 0
+                },
+                "1743871903577": {
+                  "AB": 1,
+                  "H": 1,
+                  "2B": 0,
+                  "3B": 0,
+                  "HR": 0,
+                  "RBI": 0,
+                  "R": 0,
+                  "BB": 0,
+                  "SO": 0,
+                  "HBP": 0,
+                  "SF": 0,
+                  "SAC": 0,
+                  "SB": 0,
+                  "CS": 0
+                }
+              },
+              "pitching": {
+                "1743871903577": {
+                  "IP": 1.2,
+                  "H": 0,
+                  "R": 0,
+                  "ER": 0,
+                  "BB": 0,
+                  "SO": 5,
+                  "HR": 0,
+                  "BF": 0,
+                  "HBP": 0,
+                  "WP": 0,
+                  "BK": 0,
+                  "SV": 0,
+                  "W": 0,
+                  "L": 0
+                }
+              }
+            }
+          },
+          "stats_1744020624869": {
+            "ARCHERS": {
+              "batting": {
+                "1743871903577": {
+                  "AB": 1,
+                  "H": 1,
+                  "2B": 0,
+                  "3B": 0,
+                  "HR": 0,
+                  "RBI": 0,
+                  "R": 0,
+                  "BB": 0,
+                  "SO": 0,
+                  "HBP": 0,
+                  "SF": 0,
+                  "SAC": 0,
+                  "SB": 0,
+                  "CS": 0
+                },
+                "1743871896725": {
+                  "AB": 1,
+                  "H": 1,
+                  "2B": 0,
+                  "3B": 0,
+                  "HR": 0,
+                  "RBI": 0,
+                  "R": 0,
+                  "BB": 0,
+                  "SO": 0,
+                  "HBP": 0,
+                  "SF": 0,
+                  "SAC": 0,
+                  "SB": 0,
+                  "CS": 0
+                }
+              },
+              "pitching": {
+                "1743871903577": {
+                  "IP": 1.1,
+                  "H": 0,
+                  "R": 0,
+                  "ER": 0,
+                  "BB": 0,
+                  "SO": 4,
+                  "HR": 0,
+                  "BF": 0,
+                  "HBP": 0,
+                  "WP": 0,
+                  "BK": 0,
+                  "SV": 0,
+                  "W": 0,
+                  "L": 0
+                }
+              }
+            }
+          },
+          "stats_1743871920906": {
+            "ARCHERS": {
+              "batting": {
+                "1743871903577": {
+                  "AB": 1,
+                  "H": 1,
+                  "2B": 0,
+                  "3B": 0,
+                  "HR": 0,
+                  "RBI": 0,
+                  "R": 1,
+                  "BB": 0,
+                  "SO": 0,
+                  "HBP": 0,
+                  "SF": 0,
+                  "SAC": 0,
+                  "SB": 0,
+                  "CS": 0
+                }
+              },
+              "pitching": {
+                "1743871896725": {
+                  "IP": 1,
+                  "H": 3,
+                  "R": 4,
+                  "ER": 0,
+                  "BB": 0,
+                  "SO": 0,
+                  "HR": 0,
+                  "BF": 0,
+                  "HBP": 0,
+                  "WP": 0,
+                  "BK": 0,
+                  "SV": 0,
+                  "W": 0,
+                  "L": 0
+                }
+              }
+            }
+          },
+          "baseballStats": {
+            "stats_1743871920906": {
+              "ARCHERS": {
+                "batting": {
+                  "1743871903577": {
+                    "AB": 1,
+                    "H": 1,
+                    "2B": 0,
+                    "3B": 0,
+                    "HR": 0,
+                    "RBI": 0,
+                    "R": 1,
+                    "BB": 0,
+                    "SO": 0,
+                    "HBP": 0,
+                    "SF": 0,
+                    "SAC": 0,
+                    "SB": 0,
+                    "CS": 0
+                  }
+                },
+                "pitching": {
+                  "1743871896725": {
+                    "IP": 1,
+                    "H": 3,
+                    "R": 4,
+                    "ER": 0,
+                    "BB": 0,
+                    "SO": 0,
+                    "HR": 0,
+                    "BF": 0,
+                    "HBP": 0,
+                    "WP": 0,
+                    "BK": 0,
+                    "SV": 0,
+                    "W": 0,
+                    "L": 0
+                  }
+                }
+              }
+            },
+            "games": [
+              {
+                "id": "1743871920906",
+                "stage": "I",
+                "date": "1111-01-11",
+                "time": "14:22",
+                "homeTeam": "ARCHERS",
+                "awayTeam": "SIGULDA",
+                "location": "LU Beisbola laukums",
+                "isCompleted": true,
+                "homeScore": "1",
+                "awayScore": "2"
+              }
+            ],
+            "players_ARCHERS": [
+              {
+                "id": "1743871896725",
+                "firstName": "Emergency",
+                "lastName": "Player 34",
+                "number": 52,
+                "bats": "R",
+                "throws": "R"
+              },
+              {
+                "id": "1743871903577",
+                "firstName": "Ernests",
+                "lastName": "Lapins",
+                "number": 11,
+                "bats": "R",
+                "throws": "R"
+              }
+            ]
+          },
+          "games": [
+            {
+              "id": "1743871920906",
+              "stage": "I",
+              "date": "1111-01-11",
+              "time": "14:22",
+              "homeTeam": "ARCHERS",
+              "awayTeam": "SIGULDA",
+              "location": "LU Beisbola laukums",
+              "isCompleted": true,
+              "homeScore": "1",
+              "awayScore": "2"
+            },
+            {
+              "id": "1744020701894",
+              "stage": "II",
+              "date": "1111-11-11",
+              "time": "11:11",
+              "homeTeam": "SIGULDA",
+              "awayTeam": "ARCHERS",
+              "location": "Beisbola laukums \"Turaidas skola\"",
+              "isCompleted": true,
+              "homeScore": "2",
+              "awayScore": "1"
+            }
+          ],
+          "players_ARCHERS": [
+            {
+              "id": "1743871896725",
+              "firstName": "Emergency",
+              "lastName": "Player 34",
+              "number": 52,
+              "bats": "R",
+              "throws": "R"
+            },
+            {
+              "id": "1743871903577",
+              "firstName": "Ernests",
+              "lastName": "Lapins",
+              "number": 11,
+              "bats": "R",
+              "throws": "R"
+            }
+          ]
+        },
+        "stats_1744124725529": {
+          "PLATONE": {
+            "batting": {
+              "1744124599957": {
+                "AB": 4,
+                "H": 2,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 1,
+                "R": 0,
+                "BB": 0,
+                "SO": 2,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 1,
+                "CS": 0
+              },
+              "1744124631507": {
+                "AB": 4,
+                "H": 2,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 1,
+                "R": 0,
+                "BB": 0,
+                "SO": 2,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 1,
+                "CS": 1
+              }
+            },
+            "pitching": {
+              "1744124599957": {
+                "IP": 4,
+                "H": 0,
+                "R": 2,
+                "ER": 2,
+                "BB": 3,
+                "SO": 4,
+                "HR": 0,
+                "BF": 0,
+                "HBP": 2,
+                "WP": 0,
+                "BK": 1,
+                "SV": 1,
+                "W": 0,
+                "L": 0
+              },
+              "1744124631507": {
+                "IP": 1,
+                "H": 0,
+                "R": 0,
+                "ER": 0,
+                "BB": 0,
+                "SO": 3,
+                "HR": 0,
+                "BF": 0,
+                "HBP": 0,
+                "WP": 0,
+                "BK": 0,
+                "SV": 0,
+                "W": 0,
+                "L": 0
+              }
+            }
+          },
+          "SIGULDA": {
+            "batting": {
+              "1744124494273": {
+                "AB": 3,
+                "H": 3,
+                "2B": 0,
+                "3B": 0,
+                "HR": 3,
+                "RBI": 8,
+                "R": 0,
+                "BB": 2,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124502403": {
+                "AB": 1,
+                "H": 1,
+                "2B": 1,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 4,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 1,
+                "CS": 0
+              },
+              "1744124507025": {
+                "AB": 1,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 1,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124512119": {
+                "AB": 2,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 2,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124515323": {
+                "AB": 3,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 3,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124518594": {
+                "AB": 4,
+                "H": 1,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 3,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 1,
+                "CS": 0
+              }
+            },
+            "pitching": {
+              "1744124494273": {
+                "IP": 2,
+                "H": 2,
+                "R": 0,
+                "ER": 2,
+                "BB": 2,
+                "SO": 6,
+                "HR": 0,
+                "BF": 0,
+                "HBP": 2,
+                "WP": 0,
+                "BK": 0,
+                "SV": 0,
+                "W": 0,
+                "L": 0
+              },
+              "1744124502403": {
+                "IP": 3,
+                "H": 1,
+                "R": 0,
+                "ER": 1,
+                "BB": 5,
+                "SO": 2,
+                "HR": 0,
+                "BF": 0,
+                "HBP": 1,
+                "WP": 0,
+                "BK": 0,
+                "SV": 0,
+                "W": 0,
+                "L": 0
+              }
+            }
+          }
+        },
+        "stats_1744020701894": {
+          "SIGULDA": {
+            "batting": {},
+            "pitching": {}
+          },
+          "ARCHERS": {
+            "batting": {
+              "1743871896725": {
+                "AB": 1,
+                "H": 1,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1743871903577": {
+                "AB": 1,
+                "H": 1,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              }
+            },
+            "pitching": {
+              "1743871903577": {
+                "IP": 1.2,
+                "H": 0,
+                "R": 0,
+                "ER": 0,
+                "BB": 0,
+                "SO": 5,
+                "HR": 0,
+                "BF": 0,
+                "HBP": 0,
+                "WP": 0,
+                "BK": 0,
+                "SV": 0,
+                "W": 0,
+                "L": 0
+              }
+            }
+          }
+        },
+        "players_ARCHERS": [
+          {
+            "id": "1743871896725",
+            "firstName": "Emergency",
+            "lastName": "Player 34",
+            "number": 52,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1743871903577",
+            "firstName": "Ernests",
+            "lastName": "Lapins",
+            "number": 11,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124422950",
+            "firstName": "archers",
+            "lastName": "1",
+            "number": 1,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124428163",
+            "firstName": "archers",
+            "lastName": "2",
+            "number": 2,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124431218",
+            "firstName": "archers",
+            "lastName": "3",
+            "number": 3,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124434195",
+            "firstName": "archers",
+            "lastName": "4",
+            "number": 4,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124437454",
+            "firstName": "archers",
+            "lastName": "5",
+            "number": 5,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124448839",
+            "firstName": "archers",
+            "lastName": "6",
+            "number": 6,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124452510",
+            "firstName": "archers",
+            "lastName": "7",
+            "number": 7,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124458607",
+            "firstName": "archers",
+            "lastName": "8",
+            "number": 8,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124466877",
+            "firstName": "archers",
+            "lastName": "9",
+            "number": 9,
+            "bats": "R",
+            "throws": "R"
+          }
+        ],
+        "games": [
+          {
+            "id": "1743871920906",
+            "stage": "I",
+            "date": "2025-05-18",
+            "time": "10:00",
+            "homeTeam": "PLATONE",
+            "awayTeam": "ARCHERS",
+            "location": "Beisbola laukums \"Lielvircava\"",
+            "isCompleted": true,
+            "homeScore": "5",
+            "awayScore": "2"
+          },
+          {
+            "id": "1744020701894",
+            "stage": "II",
+            "date": "1111-11-11",
+            "time": "11:11",
+            "homeTeam": "SIGULDA",
+            "awayTeam": "ARCHERS",
+            "location": "Beisbola laukums \"Turaidas skola\"",
+            "isCompleted": true,
+            "homeScore": "2",
+            "awayScore": "1"
+          },
+          {
+            "id": "1744124725529",
+            "stage": "I",
+            "date": "2025-05-18",
+            "time": "12:00",
+            "homeTeam": "PLATONE",
+            "awayTeam": "SIGULDA",
+            "location": "Beisbola laukums \"Lielvircava\"",
+            "isCompleted": true,
+            "homeScore": "7",
+            "awayScore": "4"
+          },
+          {
+            "id": "1744124778495",
+            "stage": "I",
+            "date": "2025-05-18",
+            "time": "14:00",
+            "homeTeam": "ARCHERS",
+            "awayTeam": "SIGULDA",
+            "location": "LU Beisbola laukums",
+            "isCompleted": true,
+            "homeScore": "12",
+            "awayScore": "6"
+          }
+        ],
+        "stats_1744020624869": {
+          "ARCHERS": {
+            "batting": {
+              "1743871903577": {
+                "AB": 1,
+                "H": 1,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1743871896725": {
+                "AB": 1,
+                "H": 1,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              }
+            },
+            "pitching": {
+              "1743871903577": {
+                "IP": 1.1,
+                "H": 0,
+                "R": 0,
+                "ER": 0,
+                "BB": 0,
+                "SO": 4,
+                "HR": 0,
+                "BF": 0,
+                "HBP": 0,
+                "WP": 0,
+                "BK": 0,
+                "SV": 0,
+                "W": 0,
+                "L": 0
+              }
+            }
+          }
+        },
+        "stats_1743871920906": {
+          "ARCHERS": {
+            "batting": {
+              "1743871903577": {
+                "AB": 5,
+                "H": 4,
+                "2B": 2,
+                "3B": 1,
+                "HR": 0,
+                "RBI": 3,
+                "R": 1,
+                "BB": 0,
+                "SO": 1,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124422950": {
+                "AB": 4,
+                "H": 2,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124428163": {
+                "AB": 4,
+                "H": 1,
+                "2B": 0,
+                "3B": 0,
+                "HR": 1,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 1,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124431218": {
+                "AB": 3,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 1,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124434195": {
+                "AB": 2,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124437454": {
+                "AB": 1,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 3,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124448839": {
+                "AB": 4,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 1,
+                "CS": 0
+              },
+              "1744124452510": {
+                "AB": 3,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 1
+              },
+              "1744124458607": {
+                "AB": 2,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 2,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124466877": {
+                "AB": 1,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              }
+            },
+            "pitching": {
+              "1743871896725": {
+                "IP": 5,
+                "H": 3,
+                "R": 4,
+                "ER": 2,
+                "BB": 8,
+                "SO": 8,
+                "HR": 0,
+                "BF": 0,
+                "HBP": 0,
+                "WP": 0,
+                "BK": 0,
+                "SV": 0,
+                "W": 1,
+                "L": 0
+              }
+            }
+          },
+          "PLATONE": {
+            "batting": {
+              "1744124635802": {
+                "AB": 5,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 1,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124639466": {
+                "AB": 4,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 5,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124641435": {
+                "AB": 5,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 5,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124644630": {
+                "AB": 4,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 5,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124646938": {
+                "AB": 5,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 5,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124656145": {
+                "AB": 3,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 5,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124665298": {
+                "AB": 5,
+                "H": 0,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 0,
+                "BB": 0,
+                "SO": 5,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124599957": {
+                "AB": 5,
+                "H": 4,
+                "2B": 0,
+                "3B": 0,
+                "HR": 3,
+                "RBI": 2,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124631507": {
+                "AB": 5,
+                "H": 5,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 3,
+                "R": 0,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              }
+            },
+            "pitching": {
+              "1744124599957": {
+                "IP": 5,
+                "H": 0,
+                "R": 0,
+                "ER": 4,
+                "BB": 7,
+                "SO": 7,
+                "HR": 0,
+                "BF": 0,
+                "HBP": 0,
+                "WP": 0,
+                "BK": 0,
+                "SV": 1,
+                "W": 0,
+                "L": 0
+              }
+            }
+          }
+        },
+        "players_PLATONE": [
+          {
+            "id": "1744124599957",
+            "firstName": "Edgars",
+            "lastName": "Pogoželskis",
+            "number": 33,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124631507",
+            "firstName": "Andris",
+            "lastName": "Millers",
+            "number": 88,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124635802",
+            "firstName": "Platone",
+            "lastName": "1",
+            "number": 1,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124639466",
+            "firstName": "Platone",
+            "lastName": "2",
+            "number": 2,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124641435",
+            "firstName": "Platone",
+            "lastName": "3",
+            "number": 3,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124644630",
+            "firstName": "Platone",
+            "lastName": "4",
+            "number": 4,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124646938",
+            "firstName": "Platone",
+            "lastName": "5",
+            "number": 5,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124656145",
+            "firstName": "Platone",
+            "lastName": "6 (KREILIS)",
+            "number": 6,
+            "bats": "L",
+            "throws": "L"
+          },
+          {
+            "id": "1744124665298",
+            "firstName": "Platone",
+            "lastName": "7 (KREILIS)",
+            "number": 7,
+            "bats": "R",
+            "throws": "R"
+          }
+        ],
+        "stats_1744124778495": {
+          "ARCHERS": {
+            "batting": {
+              "1744124422950": {
+                "AB": 1,
+                "H": 1,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 4,
+                "BB": 0,
+                "SO": 0,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              }
+            },
+            "pitching": {
+              "1743871903577": {
+                "IP": 5,
+                "H": 0,
+                "R": 0,
+                "ER": 9,
+                "BB": 25,
+                "SO": 15,
+                "HR": 0,
+                "BF": 0,
+                "HBP": 0,
+                "WP": 0,
+                "BK": 0,
+                "SV": 1,
+                "W": 0,
+                "L": 0
+              }
+            }
+          },
+          "SIGULDA": {
+            "batting": {
+              "1744124494273": {
+                "AB": 4,
+                "H": 2,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 1,
+                "BB": 0,
+                "SO": 2,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 0,
+                "CS": 0
+              },
+              "1744124502403": {
+                "AB": 3,
+                "H": 1,
+                "2B": 0,
+                "3B": 0,
+                "HR": 0,
+                "RBI": 0,
+                "R": 2,
+                "BB": 0,
+                "SO": 2,
+                "HBP": 0,
+                "SF": 0,
+                "SAC": 0,
+                "SB": 2,
+                "CS": 0
+              }
+            },
+            "pitching": {
+              "1744124494273": {
+                "IP": 5,
+                "H": 6,
+                "R": 6,
+                "ER": 4,
+                "BB": 0,
+                "SO": 8,
+                "HR": 0,
+                "BF": 0,
+                "HBP": 0,
+                "WP": 0,
+                "BK": 0,
+                "SV": 0,
+                "W": 1,
+                "L": 0
+              }
+            }
+          }
+        },
+        "players_SIGULDA": [
+          {
+            "id": "1744124494273",
+            "firstName": "Jānis",
+            "lastName": "Ertners",
+            "number": 55,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124502403",
+            "firstName": "Roberts",
+            "lastName": "Lipsbergs",
+            "number": 88,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124507025",
+            "firstName": "sigulda",
+            "lastName": "1",
+            "number": 1,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124512119",
+            "firstName": "sigulda",
+            "lastName": "2",
+            "number": 2,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124515323",
+            "firstName": "Sigulda",
+            "lastName": "3",
+            "number": 3,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124518594",
+            "firstName": "Sigulda",
+            "lastName": "4",
+            "number": 4,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124522412",
+            "firstName": "Sigulda",
+            "lastName": "5",
+            "number": 5,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124538449",
+            "firstName": "Sigulda",
+            "lastName": "8",
+            "number": 8,
+            "bats": "R",
+            "throws": "R"
+          },
+          {
+            "id": "1744124561495",
+            "firstName": "Sigulda",
+            "lastName": "6",
+            "number": 6,
+            "bats": "R",
+            "throws": "R"
+          }
+        ]
+      },
+      "stats_1744124725529": {
+        "PLATONE": {
+          "batting": {
+            "1744124599957": {
+              "AB": 4,
+              "H": 2,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 1,
+              "R": 0,
+              "BB": 0,
+              "SO": 2,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 1,
+              "CS": 0
+            },
+            "1744124631507": {
+              "AB": 4,
+              "H": 2,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 1,
+              "R": 0,
+              "BB": 0,
+              "SO": 2,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 1,
+              "CS": 1
+            }
+          },
+          "pitching": {
+            "1744124599957": {
+              "IP": 4,
+              "H": 0,
+              "R": 2,
+              "ER": 2,
+              "BB": 3,
+              "SO": 4,
+              "HR": 0,
+              "BF": 0,
+              "HBP": 2,
+              "WP": 0,
+              "BK": 1,
+              "SV": 1,
+              "W": 0,
+              "L": 0
+            },
+            "1744124631507": {
+              "IP": 1,
+              "H": 0,
+              "R": 0,
+              "ER": 0,
+              "BB": 0,
+              "SO": 3,
+              "HR": 0,
+              "BF": 0,
+              "HBP": 0,
+              "WP": 0,
+              "BK": 0,
+              "SV": 0,
+              "W": 0,
+              "L": 0
+            }
+          }
+        },
+        "SIGULDA": {
+          "batting": {
+            "1744124494273": {
+              "AB": 3,
+              "H": 3,
+              "2B": 0,
+              "3B": 0,
+              "HR": 3,
+              "RBI": 8,
+              "R": 0,
+              "BB": 2,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124502403": {
+              "AB": 1,
+              "H": 1,
+              "2B": 1,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 4,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 1,
+              "CS": 0
+            },
+            "1744124507025": {
+              "AB": 1,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 1,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124512119": {
+              "AB": 2,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 2,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124515323": {
+              "AB": 3,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 3,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124518594": {
+              "AB": 4,
+              "H": 1,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 3,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 1,
+              "CS": 0
+            }
+          },
+          "pitching": {
+            "1744124494273": {
+              "IP": 2,
+              "H": 2,
+              "R": 0,
+              "ER": 2,
+              "BB": 2,
+              "SO": 6,
+              "HR": 0,
+              "BF": 0,
+              "HBP": 2,
+              "WP": 0,
+              "BK": 0,
+              "SV": 0,
+              "W": 0,
+              "L": 0
+            },
+            "1744124502403": {
+              "IP": 3,
+              "H": 1,
+              "R": 0,
+              "ER": 1,
+              "BB": 5,
+              "SO": 2,
+              "HR": 0,
+              "BF": 0,
+              "HBP": 1,
+              "WP": 0,
+              "BK": 0,
+              "SV": 0,
+              "W": 0,
+              "L": 0
+            }
+          }
+        }
+      },
+      "stats_1744020701894": {
+        "SIGULDA": {
+          "batting": {},
+          "pitching": {}
+        },
+        "ARCHERS": {
+          "batting": {
+            "1743871896725": {
+              "AB": 1,
+              "H": 1,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1743871903577": {
+              "AB": 1,
+              "H": 1,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            }
+          },
+          "pitching": {
+            "1743871903577": {
+              "IP": 1.2,
+              "H": 0,
+              "R": 0,
+              "ER": 0,
+              "BB": 0,
+              "SO": 5,
+              "HR": 0,
+              "BF": 0,
+              "HBP": 0,
+              "WP": 0,
+              "BK": 0,
+              "SV": 0,
+              "W": 0,
+              "L": 0
+            }
+          }
+        }
+      },
+      "players_ARCHERS": [
+        {
+          "id": "1743871896725",
+          "firstName": "Emergency",
+          "lastName": "Player 34",
+          "number": 52,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1743871903577",
+          "firstName": "Ernests",
+          "lastName": "Lapins",
+          "number": 11,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124422950",
+          "firstName": "archers",
+          "lastName": "1",
+          "number": 1,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124428163",
+          "firstName": "archers",
+          "lastName": "2",
+          "number": 2,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124431218",
+          "firstName": "archers",
+          "lastName": "3",
+          "number": 3,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124434195",
+          "firstName": "archers",
+          "lastName": "4",
+          "number": 4,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124437454",
+          "firstName": "archers",
+          "lastName": "5",
+          "number": 5,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124448839",
+          "firstName": "archers",
+          "lastName": "6",
+          "number": 6,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124452510",
+          "firstName": "archers",
+          "lastName": "7",
+          "number": 7,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124458607",
+          "firstName": "archers",
+          "lastName": "8",
+          "number": 8,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124466877",
+          "firstName": "archers",
+          "lastName": "9",
+          "number": 9,
+          "bats": "R",
+          "throws": "R"
+        }
+      ],
+      "games": [
+        {
+          "id": "1743871920906",
+          "stage": "I",
+          "date": "2025-05-18",
+          "time": "10:00",
+          "homeTeam": "PLATONE",
+          "awayTeam": "ARCHERS",
+          "location": "Beisbola laukums \"Lielvircava\"",
+          "isCompleted": true,
+          "homeScore": "5",
+          "awayScore": "2"
+        },
+        {
+          "id": "1744020701894",
+          "stage": "II",
+          "date": "1111-11-11",
+          "time": "11:11",
+          "homeTeam": "SIGULDA",
+          "awayTeam": "ARCHERS",
+          "location": "Beisbola laukums \"Turaidas skola\"",
+          "isCompleted": true,
+          "homeScore": "2",
+          "awayScore": "1"
+        },
+        {
+          "id": "1744124725529",
+          "stage": "I",
+          "date": "2025-05-18",
+          "time": "12:00",
+          "homeTeam": "PLATONE",
+          "awayTeam": "SIGULDA",
+          "location": "Beisbola laukums \"Lielvircava\"",
+          "isCompleted": true,
+          "homeScore": "7",
+          "awayScore": "4"
+        },
+        {
+          "id": "1744124778495",
+          "stage": "I",
+          "date": "2025-05-18",
+          "time": "14:00",
+          "homeTeam": "ARCHERS",
+          "awayTeam": "SIGULDA",
+          "location": "LU Beisbola laukums",
+          "isCompleted": true,
+          "homeScore": "12",
+          "awayScore": "6"
+        }
+      ],
+      "stats_1744020624869": {
+        "ARCHERS": {
+          "batting": {
+            "1743871903577": {
+              "AB": 1,
+              "H": 1,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1743871896725": {
+              "AB": 1,
+              "H": 1,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            }
+          },
+          "pitching": {
+            "1743871903577": {
+              "IP": 1.1,
+              "H": 0,
+              "R": 0,
+              "ER": 0,
+              "BB": 0,
+              "SO": 4,
+              "HR": 0,
+              "BF": 0,
+              "HBP": 0,
+              "WP": 0,
+              "BK": 0,
+              "SV": 0,
+              "W": 0,
+              "L": 0
+            }
+          }
+        }
+      },
+      "stats_1743871920906": {
+        "ARCHERS": {
+          "batting": {
+            "1743871903577": {
+              "AB": 5,
+              "H": 4,
+              "2B": 2,
+              "3B": 1,
+              "HR": 0,
+              "RBI": 3,
+              "R": 1,
+              "BB": 0,
+              "SO": 1,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124422950": {
+              "AB": 4,
+              "H": 2,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124428163": {
+              "AB": 4,
+              "H": 1,
+              "2B": 0,
+              "3B": 0,
+              "HR": 1,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 1,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124431218": {
+              "AB": 3,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 1,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124434195": {
+              "AB": 2,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124437454": {
+              "AB": 1,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 3,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124448839": {
+              "AB": 4,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 1,
+              "CS": 0
+            },
+            "1744124452510": {
+              "AB": 3,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 1
+            },
+            "1744124458607": {
+              "AB": 2,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 2,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124466877": {
+              "AB": 1,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            }
+          },
+          "pitching": {
+            "1743871896725": {
+              "IP": 5,
+              "H": 3,
+              "R": 4,
+              "ER": 2,
+              "BB": 8,
+              "SO": 8,
+              "HR": 0,
+              "BF": 0,
+              "HBP": 0,
+              "WP": 0,
+              "BK": 0,
+              "SV": 0,
+              "W": 1,
+              "L": 0
+            }
+          }
+        },
+        "PLATONE": {
+          "batting": {
+            "1744124635802": {
+              "AB": 5,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 1,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124639466": {
+              "AB": 4,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 5,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124641435": {
+              "AB": 5,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 5,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124644630": {
+              "AB": 4,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 5,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124646938": {
+              "AB": 5,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 5,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124656145": {
+              "AB": 3,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 5,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124665298": {
+              "AB": 5,
+              "H": 0,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 0,
+              "BB": 0,
+              "SO": 5,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124599957": {
+              "AB": 5,
+              "H": 4,
+              "2B": 0,
+              "3B": 0,
+              "HR": 3,
+              "RBI": 2,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124631507": {
+              "AB": 5,
+              "H": 5,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 3,
+              "R": 0,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            }
+          },
+          "pitching": {
+            "1744124599957": {
+              "IP": 5,
+              "H": 0,
+              "R": 0,
+              "ER": 4,
+              "BB": 7,
+              "SO": 7,
+              "HR": 0,
+              "BF": 0,
+              "HBP": 0,
+              "WP": 0,
+              "BK": 0,
+              "SV": 1,
+              "W": 0,
+              "L": 0
+            }
+          }
+        }
+      },
+      "players_PLATONE": [
+        {
+          "id": "1744124599957",
+          "firstName": "Edgars",
+          "lastName": "Pogoželskis",
+          "number": 33,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124631507",
+          "firstName": "Andris",
+          "lastName": "Millers",
+          "number": 88,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124635802",
+          "firstName": "Platone",
+          "lastName": "1",
+          "number": 1,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124639466",
+          "firstName": "Platone",
+          "lastName": "2",
+          "number": 2,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124641435",
+          "firstName": "Platone",
+          "lastName": "3",
+          "number": 3,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124644630",
+          "firstName": "Platone",
+          "lastName": "4",
+          "number": 4,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124646938",
+          "firstName": "Platone",
+          "lastName": "5",
+          "number": 5,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124656145",
+          "firstName": "Platone",
+          "lastName": "6 (KREILIS)",
+          "number": 6,
+          "bats": "L",
+          "throws": "L"
+        },
+        {
+          "id": "1744124665298",
+          "firstName": "Platone",
+          "lastName": "7 (KREILIS)",
+          "number": 7,
+          "bats": "R",
+          "throws": "R"
+        }
+      ],
+      "stats_1744124778495": {
+        "ARCHERS": {
+          "batting": {
+            "1744124422950": {
+              "AB": 1,
+              "H": 1,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 4,
+              "BB": 0,
+              "SO": 0,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            }
+          },
+          "pitching": {
+            "1743871903577": {
+              "IP": 5,
+              "H": 0,
+              "R": 0,
+              "ER": 9,
+              "BB": 25,
+              "SO": 15,
+              "HR": 0,
+              "BF": 0,
+              "HBP": 0,
+              "WP": 0,
+              "BK": 0,
+              "SV": 1,
+              "W": 0,
+              "L": 0
+            }
+          }
+        },
+        "SIGULDA": {
+          "batting": {
+            "1744124494273": {
+              "AB": 4,
+              "H": 2,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 1,
+              "BB": 0,
+              "SO": 2,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 0,
+              "CS": 0
+            },
+            "1744124502403": {
+              "AB": 3,
+              "H": 1,
+              "2B": 0,
+              "3B": 0,
+              "HR": 0,
+              "RBI": 0,
+              "R": 2,
+              "BB": 0,
+              "SO": 2,
+              "HBP": 0,
+              "SF": 0,
+              "SAC": 0,
+              "SB": 2,
+              "CS": 0
+            }
+          },
+          "pitching": {
+            "1744124494273": {
+              "IP": 5,
+              "H": 6,
+              "R": 6,
+              "ER": 4,
+              "BB": 0,
+              "SO": 8,
+              "HR": 0,
+              "BF": 0,
+              "HBP": 0,
+              "WP": 0,
+              "BK": 0,
+              "SV": 0,
+              "W": 1,
+              "L": 0
+            }
+          }
+        }
+      },
+      "players_SIGULDA": [
+        {
+          "id": "1744124494273",
+          "firstName": "Jānis",
+          "lastName": "Ertners",
+          "number": 55,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124502403",
+          "firstName": "Roberts",
+          "lastName": "Lipsbergs",
+          "number": 88,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124507025",
+          "firstName": "sigulda",
+          "lastName": "1",
+          "number": 1,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124512119",
+          "firstName": "sigulda",
+          "lastName": "2",
+          "number": 2,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124515323",
+          "firstName": "Sigulda",
+          "lastName": "3",
+          "number": 3,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124518594",
+          "firstName": "Sigulda",
+          "lastName": "4",
+          "number": 4,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124522412",
+          "firstName": "Sigulda",
+          "lastName": "5",
+          "number": 5,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124538449",
+          "firstName": "Sigulda",
+          "lastName": "8",
+          "number": 8,
+          "bats": "R",
+          "throws": "R"
+        },
+        {
+          "id": "1744124561495",
+          "firstName": "Sigulda",
+          "lastName": "6",
+          "number": 6,
+          "bats": "R",
+          "throws": "R"
+        }
+      ]
+    },
+    "stats_1744124725529": {
+      "PLATONE": {
+        "batting": {
+          "1744124599957": {
+            "AB": 4,
+            "H": 2,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 1,
+            "R": 0,
+            "BB": 0,
+            "SO": 2,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 1,
+            "CS": 0
+          },
+          "1744124631507": {
+            "AB": 4,
+            "H": 2,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 1,
+            "R": 0,
+            "BB": 0,
+            "SO": 2,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 1,
+            "CS": 1
+          }
+        },
+        "pitching": {
+          "1744124599957": {
+            "IP": 4,
+            "H": 0,
+            "R": 2,
+            "ER": 2,
+            "BB": 3,
+            "SO": 4,
+            "HR": 0,
+            "BF": 0,
+            "HBP": 2,
+            "WP": 0,
+            "BK": 1,
+            "W": 1,
+            "L": 0,
+            "SV": 0
+          },
+          "1744124631507": {
+            "IP": 1,
+            "H": 0,
+            "R": 0,
+            "ER": 0,
+            "BB": 0,
+            "SO": 3,
+            "HR": 0,
+            "BF": 0,
+            "HBP": 0,
+            "WP": 0,
+            "BK": 0,
+            "W": 0,
+            "L": 0,
+            "SV": 0
+          }
+        }
+      },
+      "SIGULDA": {
+        "batting": {
+          "1744124494273": {
+            "AB": 3,
+            "H": 3,
+            "2B": 0,
+            "3B": 0,
+            "HR": 3,
+            "RBI": 8,
+            "R": 0,
+            "BB": 2,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124502403": {
+            "AB": 1,
+            "H": 1,
+            "2B": 1,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 4,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 1,
+            "CS": 0
+          },
+          "1744124507025": {
+            "AB": 1,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 1,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124512119": {
+            "AB": 2,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 2,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124515323": {
+            "AB": 3,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 3,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124518594": {
+            "AB": 4,
+            "H": 1,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 3,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 1,
+            "CS": 0
+          }
+        },
+        "pitching": {
+          "1744124494273": {
+            "IP": 2,
+            "H": 2,
+            "R": 0,
+            "ER": 2,
+            "BB": 2,
+            "SO": 6,
+            "HR": 0,
+            "BF": 0,
+            "HBP": 2,
+            "WP": 0,
+            "BK": 0,
+            "W": 0,
+            "L": 0,
+            "SV": 0
+          },
+          "1744124502403": {
+            "IP": 3,
+            "H": 1,
+            "R": 0,
+            "ER": 1,
+            "BB": 5,
+            "SO": 2,
+            "HR": 0,
+            "BF": 0,
+            "HBP": 1,
+            "WP": 0,
+            "BK": 0,
+            "W": 0,
+            "L": 1,
+            "SV": 0
+          }
+        }
+      }
+    },
+    "stats_1744020701894": {
+      "SIGULDA": {
+        "batting": {},
+        "pitching": {}
+      },
+      "ARCHERS": {
+        "batting": {
+          "1743871896725": {
+            "AB": 1,
+            "H": 1,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1743871903577": {
+            "AB": 1,
+            "H": 1,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          }
+        },
+        "pitching": {
+          "1743871903577": {
+            "IP": 1.2,
+            "H": 0,
+            "R": 0,
+            "ER": 0,
+            "BB": 0,
+            "SO": 5,
+            "HR": 0,
+            "BF": 0,
+            "HBP": 0,
+            "WP": 0,
+            "BK": 0,
+            "SV": 0,
+            "W": 0,
+            "L": 0
+          }
+        }
+      }
+    },
+    "players_ARCHERS": [
+      {
+        "id": "1743871896725",
+        "firstName": "Emergency",
+        "lastName": "Player 34",
+        "number": 52,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1743871903577",
+        "firstName": "Ernests",
+        "lastName": "Lapins",
+        "number": 11,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124422950",
+        "firstName": "archers",
+        "lastName": "1",
+        "number": 1,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124428163",
+        "firstName": "archers",
+        "lastName": "2",
+        "number": 2,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124431218",
+        "firstName": "archers",
+        "lastName": "3",
+        "number": 3,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124434195",
+        "firstName": "archers",
+        "lastName": "4",
+        "number": 4,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124437454",
+        "firstName": "archers",
+        "lastName": "5",
+        "number": 5,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124448839",
+        "firstName": "archers",
+        "lastName": "6",
+        "number": 6,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124452510",
+        "firstName": "archers",
+        "lastName": "7",
+        "number": 7,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124458607",
+        "firstName": "archers",
+        "lastName": "8",
+        "number": 8,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124466877",
+        "firstName": "archers",
+        "lastName": "9",
+        "number": 9,
+        "bats": "R",
+        "throws": "R"
+      }
+    ],
+    "players_PLATONE": [
+      {
+        "id": "1744124599957",
+        "firstName": "Edgars",
+        "lastName": "Pogoželskis",
+        "number": 33,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124631507",
+        "firstName": "Andris",
+        "lastName": "Millers",
+        "number": 88,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124635802",
+        "firstName": "Platone",
+        "lastName": "1",
+        "number": 1,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124639466",
+        "firstName": "Platone",
+        "lastName": "2",
+        "number": 2,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124641435",
+        "firstName": "Platone",
+        "lastName": "3",
+        "number": 3,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124644630",
+        "firstName": "Platone",
+        "lastName": "4",
+        "number": 4,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124646938",
+        "firstName": "Platone",
+        "lastName": "5",
+        "number": 5,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124656145",
+        "firstName": "Platone",
+        "lastName": "6 (KREILIS)",
+        "number": 6,
+        "bats": "L",
+        "throws": "L"
+      },
+      {
+        "id": "1744124665298",
+        "firstName": "Platone",
+        "lastName": "7 (KREILIS)",
+        "number": 7,
+        "bats": "R",
+        "throws": "R"
+      }
+    ],
+    "stats_1744020624869": {
+      "ARCHERS": {
+        "batting": {
+          "1743871903577": {
+            "AB": 1,
+            "H": 1,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1743871896725": {
+            "AB": 1,
+            "H": 1,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          }
+        },
+        "pitching": {
+          "1743871903577": {
+            "IP": 1.1,
+            "H": 0,
+            "R": 0,
+            "ER": 0,
+            "BB": 0,
+            "SO": 4,
+            "HR": 0,
+            "BF": 0,
+            "HBP": 0,
+            "WP": 0,
+            "BK": 0,
+            "SV": 0,
+            "W": 0,
+            "L": 0
+          }
+        }
+      }
+    },
+    "stats_1743871920906": {
+      "ARCHERS": {
+        "batting": {
+          "1743871903577": {
+            "AB": 5,
+            "H": 4,
+            "2B": 2,
+            "3B": 1,
+            "HR": 0,
+            "RBI": 3,
+            "R": 1,
+            "BB": 0,
+            "SO": 1,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124422950": {
+            "AB": 4,
+            "H": 2,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124428163": {
+            "AB": 4,
+            "H": 1,
+            "2B": 0,
+            "3B": 0,
+            "HR": 1,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 1,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124431218": {
+            "AB": 3,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 1,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124434195": {
+            "AB": 2,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124437454": {
+            "AB": 1,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 3,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124448839": {
+            "AB": 4,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 1,
+            "CS": 0
+          },
+          "1744124452510": {
+            "AB": 3,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 1
+          },
+          "1744124458607": {
+            "AB": 2,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 2,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124466877": {
+            "AB": 1,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          }
+        },
+        "pitching": {
+          "1743871896725": {
+            "IP": 5,
+            "H": 3,
+            "R": 4,
+            "ER": 2,
+            "BB": 8,
+            "SO": 8,
+            "HR": 0,
+            "BF": 0,
+            "HBP": 0,
+            "WP": 0,
+            "BK": 0,
+            "W": 0,
+            "L": 1,
+            "SV": 0
+          }
+        }
+      },
+      "PLATONE": {
+        "batting": {
+          "1744124635802": {
+            "AB": 5,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 1,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124639466": {
+            "AB": 4,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 5,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124641435": {
+            "AB": 5,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 5,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124644630": {
+            "AB": 4,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 5,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124646938": {
+            "AB": 5,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 5,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124656145": {
+            "AB": 3,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 5,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124665298": {
+            "AB": 5,
+            "H": 0,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 0,
+            "BB": 0,
+            "SO": 5,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124599957": {
+            "AB": 5,
+            "H": 4,
+            "2B": 0,
+            "3B": 0,
+            "HR": 3,
+            "RBI": 2,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124631507": {
+            "AB": 5,
+            "H": 5,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 3,
+            "R": 0,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          }
+        },
+        "pitching": {
+          "1744124599957": {
+            "IP": 5,
+            "H": 0,
+            "R": 0,
+            "ER": 4,
+            "BB": 7,
+            "SO": 7,
+            "HR": 0,
+            "BF": 0,
+            "HBP": 0,
+            "WP": 0,
+            "BK": 0,
+            "W": 1,
+            "L": 0,
+            "SV": 0
+          }
+        }
+      }
+    },
+    "games": [
+      {
+        "id": "1743871920906",
+        "stage": "I",
+        "date": "2025-05-18",
+        "time": "10:00",
+        "homeTeam": "PLATONE",
+        "awayTeam": "ARCHERS",
+        "location": "Beisbola laukums \"Lielvircava\"",
+        "isCompleted": true,
+        "homeScore": "5",
+        "awayScore": "2"
+      },
+      {
+        "id": "1744020701894",
+        "stage": "II",
+        "date": "1111-11-11",
+        "time": "11:11",
+        "homeTeam": "SIGULDA",
+        "awayTeam": "ARCHERS",
+        "location": "Beisbola laukums \"Turaidas skola\"",
+        "isCompleted": true,
+        "homeScore": "2",
+        "awayScore": "1"
+      },
+      {
+        "id": "1744124725529",
+        "stage": "I",
+        "date": "2025-05-18",
+        "time": "12:00",
+        "homeTeam": "PLATONE",
+        "awayTeam": "SIGULDA",
+        "location": "Beisbola laukums \"Lielvircava\"",
+        "isCompleted": true,
+        "homeScore": "7",
+        "awayScore": "4"
+      },
+      {
+        "id": "1744124778495",
+        "stage": "I",
+        "date": "2025-05-18",
+        "time": "14:00",
+        "homeTeam": "ARCHERS",
+        "awayTeam": "SIGULDA",
+        "location": "LU Beisbola laukums",
+        "isCompleted": true,
+        "homeScore": "12",
+        "awayScore": "6"
+      }
+    ],
+    "stats_1744124778495": {
+      "ARCHERS": {
+        "batting": {
+          "1744124422950": {
+            "AB": 1,
+            "H": 1,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 4,
+            "BB": 0,
+            "SO": 0,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          }
+        },
+        "pitching": {
+          "1743871903577": {
+            "IP": 5,
+            "H": 0,
+            "R": 0,
+            "ER": 9,
+            "BB": 25,
+            "SO": 15,
+            "HR": 0,
+            "BF": 0,
+            "HBP": 0,
+            "WP": 0,
+            "BK": 0,
+            "W": 1,
+            "L": 0,
+            "SV": 0
+          }
+        }
+      },
+      "SIGULDA": {
+        "batting": {
+          "1744124494273": {
+            "AB": 4,
+            "H": 2,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 1,
+            "BB": 0,
+            "SO": 2,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 0,
+            "CS": 0
+          },
+          "1744124502403": {
+            "AB": 3,
+            "H": 1,
+            "2B": 0,
+            "3B": 0,
+            "HR": 0,
+            "RBI": 0,
+            "R": 2,
+            "BB": 0,
+            "SO": 2,
+            "HBP": 0,
+            "SF": 0,
+            "SAC": 0,
+            "SB": 2,
+            "CS": 0
+          }
+        },
+        "pitching": {
+          "1744124494273": {
+            "IP": 5,
+            "H": 6,
+            "R": 6,
+            "ER": 4,
+            "BB": 0,
+            "SO": 8,
+            "HR": 0,
+            "BF": 0,
+            "HBP": 0,
+            "WP": 0,
+            "BK": 0,
+            "W": 0,
+            "L": 1,
+            "SV": 0
+          }
+        }
+      }
+    },
+    "players_SIGULDA": [
+      {
+        "id": "1744124494273",
+        "firstName": "Jānis",
+        "lastName": "Ertners",
+        "number": 55,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124502403",
+        "firstName": "Roberts",
+        "lastName": "Lipsbergs",
+        "number": 88,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124507025",
+        "firstName": "sigulda",
+        "lastName": "1",
+        "number": 1,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124512119",
+        "firstName": "sigulda",
+        "lastName": "2",
+        "number": 2,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124515323",
+        "firstName": "Sigulda",
+        "lastName": "3",
+        "number": 3,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124518594",
+        "firstName": "Sigulda",
+        "lastName": "4",
+        "number": 4,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124522412",
+        "firstName": "Sigulda",
+        "lastName": "5",
+        "number": 5,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124538449",
+        "firstName": "Sigulda",
+        "lastName": "8",
+        "number": 8,
+        "bats": "R",
+        "throws": "R"
+      },
+      {
+        "id": "1744124561495",
+        "firstName": "Sigulda",
+        "lastName": "6",
+        "number": 6,
+        "bats": "R",
+        "throws": "R"
+      }
+    ]
+  },
+  "stats_1744124725529": {
+    "PLATONE": {
+      "batting": {
+        "1744124599957": {
+          "AB": 4,
+          "H": 2,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 1,
+          "R": 0,
+          "BB": 0,
+          "SO": 2,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 1,
+          "CS": 0
+        },
+        "1744124631507": {
+          "AB": 4,
+          "H": 2,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 1,
+          "R": 0,
+          "BB": 0,
+          "SO": 2,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 1,
+          "CS": 1
+        }
+      },
+      "pitching": {
+        "1744124599957": {
+          "IP": 4,
+          "H": 0,
+          "R": 2,
+          "ER": 2,
+          "BB": 3,
+          "SO": 4,
+          "HR": 0,
+          "BF": 0,
+          "HBP": 2,
+          "WP": 0,
+          "BK": 1,
+          "W": 1,
+          "L": 0,
+          "SV": 0
+        },
+        "1744124631507": {
+          "IP": 1,
+          "H": 0,
+          "R": 0,
+          "ER": 0,
+          "BB": 0,
+          "SO": 3,
+          "HR": 0,
+          "BF": 0,
+          "HBP": 0,
+          "WP": 0,
+          "BK": 0,
+          "W": 0,
+          "L": 0,
+          "SV": 0
+        }
+      }
+    },
+    "SIGULDA": {
+      "batting": {
+        "1744124494273": {
+          "AB": 3,
+          "H": 3,
+          "2B": 0,
+          "3B": 0,
+          "HR": 3,
+          "RBI": 8,
+          "R": 0,
+          "BB": 2,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124502403": {
+          "AB": 1,
+          "H": 1,
+          "2B": 1,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 4,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 1,
+          "CS": 0
+        },
+        "1744124507025": {
+          "AB": 1,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 1,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124512119": {
+          "AB": 2,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 2,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124515323": {
+          "AB": 3,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 3,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124518594": {
+          "AB": 4,
+          "H": 1,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 3,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 1,
+          "CS": 0
+        }
+      },
+      "pitching": {
+        "1744124494273": {
+          "IP": 2,
+          "H": 2,
+          "R": 0,
+          "ER": 2,
+          "BB": 2,
+          "SO": 6,
+          "HR": 0,
+          "BF": 0,
+          "HBP": 2,
+          "WP": 0,
+          "BK": 0,
+          "W": 0,
+          "L": 0,
+          "SV": 0
+        },
+        "1744124502403": {
+          "IP": 3,
+          "H": 1,
+          "R": 0,
+          "ER": 1,
+          "BB": 5,
+          "SO": 2,
+          "HR": 0,
+          "BF": 0,
+          "HBP": 1,
+          "WP": 0,
+          "BK": 0,
+          "W": 0,
+          "L": 1,
+          "SV": 0
+        }
+      }
+    }
+  },
+  "stats_1744020701894": {
+    "SIGULDA": {
+      "batting": {},
+      "pitching": {}
+    },
+    "ARCHERS": {
+      "batting": {
+        "1743871896725": {
+          "AB": 1,
+          "H": 1,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1743871903577": {
+          "AB": 1,
+          "H": 1,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        }
+      },
+      "pitching": {
+        "1743871903577": {
+          "IP": 1.67,
+          "H": 0,
+          "R": 0,
+          "ER": 0,
+          "BB": 0,
+          "SO": 5,
+          "HR": 0,
+          "BF": 0,
+          "HBP": 0,
+          "WP": 0,
+          "BK": 0,
+          "W": 0,
+          "L": 0,
+          "SV": 0
+        }
+      }
+    }
+  },
+  "players_ARCHERS": [
+    {
+      "id": "1743871896725",
+      "firstName": "Emergency",
+      "lastName": "Player 34",
+      "number": 52,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1743871903577",
+      "firstName": "Ernests",
+      "lastName": "Lapins",
+      "number": 11,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124422950",
+      "firstName": "archers",
+      "lastName": "1",
+      "number": 1,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124428163",
+      "firstName": "archers",
+      "lastName": "2",
+      "number": 2,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124431218",
+      "firstName": "archers",
+      "lastName": "3",
+      "number": 3,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124434195",
+      "firstName": "archers",
+      "lastName": "4",
+      "number": 4,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124437454",
+      "firstName": "archers",
+      "lastName": "5",
+      "number": 5,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124448839",
+      "firstName": "archers",
+      "lastName": "6",
+      "number": 6,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124452510",
+      "firstName": "archers",
+      "lastName": "7",
+      "number": 7,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124458607",
+      "firstName": "archers",
+      "lastName": "8",
+      "number": 8,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124466877",
+      "firstName": "archers",
+      "lastName": "9",
+      "number": 9,
+      "bats": "R",
+      "throws": "R"
+    }
+  ],
+  "players_PLATONE": [
+    {
+      "id": "1744124599957",
+      "firstName": "Edgars",
+      "lastName": "Pogoželskis",
+      "number": 33,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124631507",
+      "firstName": "Andris",
+      "lastName": "Millers",
+      "number": 88,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124635802",
+      "firstName": "Platone",
+      "lastName": "1",
+      "number": 1,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124639466",
+      "firstName": "Platone",
+      "lastName": "2",
+      "number": 2,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124641435",
+      "firstName": "Platone",
+      "lastName": "3",
+      "number": 3,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124644630",
+      "firstName": "Platone",
+      "lastName": "4",
+      "number": 4,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124646938",
+      "firstName": "Platone",
+      "lastName": "5",
+      "number": 5,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124656145",
+      "firstName": "Platone",
+      "lastName": "6 (KREILIS)",
+      "number": 6,
+      "bats": "L",
+      "throws": "L"
+    },
+    {
+      "id": "1744124665298",
+      "firstName": "Platone",
+      "lastName": "7 (KREILIS)",
+      "number": 7,
+      "bats": "R",
+      "throws": "R"
+    }
+  ],
+  "stats_1744020624869": {
+    "ARCHERS": {
+      "batting": {
+        "1743871903577": {
+          "AB": 1,
+          "H": 1,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1743871896725": {
+          "AB": 1,
+          "H": 1,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        }
+      },
+      "pitching": {
+        "1743871903577": {
+          "IP": 1.1,
+          "H": 0,
+          "R": 0,
+          "ER": 0,
+          "BB": 0,
+          "SO": 4,
+          "HR": 0,
+          "BF": 0,
+          "HBP": 0,
+          "WP": 0,
+          "BK": 0,
+          "SV": 0,
+          "W": 0,
+          "L": 0
+        }
+      }
+    }
+  },
+  "stats_1743871920906": {
+    "ARCHERS": {
+      "batting": {
+        "1743871903577": {
+          "AB": 5,
+          "H": 4,
+          "2B": 2,
+          "3B": 1,
+          "HR": 0,
+          "RBI": 3,
+          "R": 1,
+          "BB": 0,
+          "SO": 1,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124422950": {
+          "AB": 4,
+          "H": 2,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124428163": {
+          "AB": 4,
+          "H": 1,
+          "2B": 0,
+          "3B": 0,
+          "HR": 1,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 1,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124431218": {
+          "AB": 3,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 1,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124434195": {
+          "AB": 2,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124437454": {
+          "AB": 1,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 3,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124448839": {
+          "AB": 4,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 1,
+          "CS": 0
+        },
+        "1744124452510": {
+          "AB": 3,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 1
+        },
+        "1744124458607": {
+          "AB": 2,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 2,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124466877": {
+          "AB": 1,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        }
+      },
+      "pitching": {
+        "1743871896725": {
+          "IP": 5,
+          "H": 3,
+          "R": 4,
+          "ER": 2,
+          "BB": 8,
+          "SO": 8,
+          "HR": 0,
+          "BF": 0,
+          "HBP": 0,
+          "WP": 0,
+          "BK": 0,
+          "W": 0,
+          "L": 1,
+          "SV": 0
+        }
+      }
+    },
+    "PLATONE": {
+      "batting": {
+        "1744124635802": {
+          "AB": 5,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 1,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124639466": {
+          "AB": 4,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 5,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124641435": {
+          "AB": 5,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 5,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124644630": {
+          "AB": 4,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 5,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124646938": {
+          "AB": 5,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 5,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124656145": {
+          "AB": 3,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 5,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124665298": {
+          "AB": 5,
+          "H": 0,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 0,
+          "BB": 0,
+          "SO": 5,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124599957": {
+          "AB": 5,
+          "H": 4,
+          "2B": 0,
+          "3B": 0,
+          "HR": 3,
+          "RBI": 2,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124631507": {
+          "AB": 5,
+          "H": 5,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 3,
+          "R": 0,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        }
+      },
+      "pitching": {
+        "1744124599957": {
+          "IP": 5,
+          "H": 0,
+          "R": 0,
+          "ER": 4,
+          "BB": 7,
+          "SO": 7,
+          "HR": 0,
+          "BF": 0,
+          "HBP": 0,
+          "WP": 0,
+          "BK": 0,
+          "W": 1,
+          "L": 0,
+          "SV": 0
+        }
+      }
+    }
+  },
+  "games": [
+    {
+      "id": "1743871920906",
+      "stage": "I",
+      "date": "2025-05-18",
+      "time": "10:00",
+      "homeTeam": "PLATONE",
+      "awayTeam": "ARCHERS",
+      "location": "Beisbola laukums \"Lielvircava\"",
+      "isCompleted": true,
+      "homeScore": "5",
+      "awayScore": "2"
+    },
+    {
+      "id": "1744020701894",
+      "stage": "II",
+      "date": "1111-11-11",
+      "time": "11:11",
+      "homeTeam": "SIGULDA",
+      "awayTeam": "ARCHERS",
+      "location": "Beisbola laukums \"Turaidas skola\"",
+      "isCompleted": true,
+      "homeScore": "2",
+      "awayScore": "1"
+    },
+    {
+      "id": "1744124725529",
+      "stage": "I",
+      "date": "2025-05-18",
+      "time": "12:00",
+      "homeTeam": "PLATONE",
+      "awayTeam": "SIGULDA",
+      "location": "Beisbola laukums \"Lielvircava\"",
+      "isCompleted": true,
+      "homeScore": "7",
+      "awayScore": "4"
+    },
+    {
+      "id": "1744124778495",
+      "stage": "I",
+      "date": "2025-05-18",
+      "time": "14:00",
+      "homeTeam": "ARCHERS",
+      "awayTeam": "SIGULDA",
+      "location": "LU Beisbola laukums",
+      "isCompleted": true,
+      "homeScore": "12",
+      "awayScore": "6"
+    }
+  ],
+  "stats_1744124778495": {
+    "ARCHERS": {
+      "batting": {
+        "1744124422950": {
+          "AB": 1,
+          "H": 1,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 4,
+          "BB": 0,
+          "SO": 0,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        }
+      },
+      "pitching": {
+        "1743871903577": {
+          "IP": 5,
+          "H": 0,
+          "R": 0,
+          "ER": 9,
+          "BB": 25,
+          "SO": 15,
+          "HR": 0,
+          "BF": 0,
+          "HBP": 0,
+          "WP": 0,
+          "BK": 0,
+          "W": 1,
+          "L": 0,
+          "SV": 0
+        }
+      }
+    },
+    "SIGULDA": {
+      "batting": {
+        "1744124494273": {
+          "AB": 4,
+          "H": 2,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 1,
+          "BB": 0,
+          "SO": 2,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 0,
+          "CS": 0
+        },
+        "1744124502403": {
+          "AB": 3,
+          "H": 1,
+          "2B": 0,
+          "3B": 0,
+          "HR": 0,
+          "RBI": 0,
+          "R": 2,
+          "BB": 0,
+          "SO": 2,
+          "HBP": 0,
+          "SF": 0,
+          "SAC": 0,
+          "SB": 2,
+          "CS": 0
+        }
+      },
+      "pitching": {
+        "1744124494273": {
+          "IP": 5,
+          "H": 6,
+          "R": 6,
+          "ER": 4,
+          "BB": 0,
+          "SO": 8,
+          "HR": 0,
+          "BF": 0,
+          "HBP": 0,
+          "WP": 0,
+          "BK": 0,
+          "W": 0,
+          "L": 1,
+          "SV": 0
+        }
+      }
+    }
+  },
+  "players_SIGULDA": [
+    {
+      "id": "1744124494273",
+      "firstName": "Jānis",
+      "lastName": "Ertners",
+      "number": 55,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124502403",
+      "firstName": "Roberts",
+      "lastName": "Lipsbergs",
+      "number": 88,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124507025",
+      "firstName": "sigulda",
+      "lastName": "1",
+      "number": 1,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124512119",
+      "firstName": "sigulda",
+      "lastName": "2",
+      "number": 2,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124515323",
+      "firstName": "Sigulda",
+      "lastName": "3",
+      "number": 3,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124518594",
+      "firstName": "Sigulda",
+      "lastName": "4",
+      "number": 4,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124522412",
+      "firstName": "Sigulda",
+      "lastName": "5",
+      "number": 5,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124538449",
+      "firstName": "Sigulda",
+      "lastName": "8",
+      "number": 8,
+      "bats": "R",
+      "throws": "R"
+    },
+    {
+      "id": "1744124561495",
+      "firstName": "Sigulda",
+      "lastName": "6",
+      "number": 6,
+      "bats": "R",
+      "throws": "R"
+    }
+  ]
+}

@@ -1,0 +1,1788 @@
+// Current view and sort state
+let currentView = 'batting';
+let currentSort = { stat: 'AVG', direction: 'desc' };
+
+// Define showPlayerDetails in global scope to prevent "undefined" errors
+window.showPlayerDetails = function(playerId, team, type) {
+    console.log('showPlayerDetails called with:', playerId, team, type);
+    
+    try {
+        // Get player data from localStorage
+        const localData = localStorage.getItem('baseballStats');
+        if (!localData) {
+            alert('No player data available');
+            return;
+        }
+        
+        const data = JSON.parse(localData);
+        
+        // Find player details
+        let playerDetails = null;
+        
+        // Check if data is in the new format with playerDetails
+        if (data.playerDetails && data.playerDetails[playerId]) {
+            playerDetails = data.playerDetails[playerId];
+        } else {
+            // Look for player in the players_TEAM arrays
+            const teamKeys = Object.keys(data).filter(key => key.startsWith('players_'));
+            for (const teamKey of teamKeys) {
+                const players = data[teamKey] || [];
+                const player = players.find(p => p.id === playerId);
+                if (player) {
+                    playerDetails = player;
+                    break;
+                }
+            }
+        }
+        
+        if (!playerDetails) {
+            alert('Player details not found');
+            return;
+        }
+        
+        // Set player information in the modal
+        document.getElementById('player-name').textContent = 
+            `${playerDetails.firstName} ${playerDetails.lastName}`;
+        document.getElementById('player-number').textContent = playerDetails.number;
+        document.getElementById('player-team').textContent = team;
+        document.getElementById('player-bats').textContent = 
+            playerDetails.bats === 'R' ? 'R' : (playerDetails.bats === 'L' ? 'L' : 'SWITCH');
+        document.getElementById('player-throws').textContent = 
+            playerDetails.throws === 'R' ? 'R' : (playerDetails.throws === 'L' ? 'L' : 'SWITCH');
+        
+        // Set team logo
+        const teamLogoElement = document.getElementById('player-team-logo');
+        const logoMap = {
+            'ARCHERS': 'images/teams/archers.jpg',
+            'SIGULDA': 'images/teams/sigulda.jpg',
+            'PLATONE': 'images/teams/platone.jpg'
+        };
+        teamLogoElement.src = logoMap[team] || 'images/teams/default.jpg';
+        teamLogoElement.alt = `${team} Logo`;
+        
+        // Show the appropriate stats view (batting or pitching tab)
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.tab-btn[onclick*="${type}"]`).classList.add('active');
+        document.getElementById('player-batting-stats').style.display = type === 'batting' ? 'block' : 'none';
+        document.getElementById('player-pitching-stats').style.display = type === 'pitching' ? 'block' : 'none';
+        
+        // Show the modal
+        const modal = document.getElementById('player-details-modal');
+        modal.classList.add('show');
+        
+    } catch (e) {
+        console.error('Error in showPlayerDetails:', e);
+        alert('An error occurred displaying player details');
+    }
+};
+
+// Ensure all functions are available globally from script start
+(function() {
+    // This will be executed immediately when the script loads
+    // It makes critical functions available on the window object right away
+    window.showPlayerDetails = function(playerId, team, type) {
+        // When the real function is loaded, it will replace this one
+        console.log('Function showPlayerDetails is being called before fully defined');
+        
+        // Try to execute the real function if it exists in this scope
+        if (typeof showPlayerDetails === 'function') {
+            return showPlayerDetails(playerId, team, type);
+        }
+        
+        // Otherwise, wait a bit and try again when DOM is ready
+        setTimeout(() => {
+            if (typeof window.showPlayerDetails === 'function') {
+                window.showPlayerDetails(playerId, team, type);
+            } else {
+                console.error('showPlayerDetails function could not be found');
+                alert('Error: Could not load player details. Please try refreshing the page.');
+            }
+        }, 100);
+    };
+})();
+
+// Add this at the top of the file, after the currentView and currentSort declarations
+document.addEventListener('DOMContentLoaded', function() {
+    // Set default view to batting
+    currentView = 'batting';
+    
+    // Set the active button
+    document.querySelectorAll('.stats-btn').forEach(btn => {
+        if (btn.getAttribute('onclick').includes('batting')) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Show batting stats table and hide pitching stats table
+    document.getElementById('batting-stats').style.display = 'block';
+    document.getElementById('pitching-stats').style.display = 'none';
+    
+    // Load the stats immediately
+    loadStats();
+    
+    // Set up modal event listeners
+    const modal = document.getElementById('player-details-modal');
+    const closeBtn = modal.querySelector('.close');
+    
+    // Close the modal when the close button is clicked
+    closeBtn.addEventListener('click', function() {
+        closePlayerModal();
+    });
+    
+    // Close the modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closePlayerModal();
+        }
+    });
+    
+    // Set up stats tabs event listeners
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const type = this.getAttribute('onclick').includes('batting') ? 'batting' : 'pitching';
+            switchPlayerStatsView(type);
+        });
+    });
+    
+    // Fix any onclick attributes on rows
+    fixRowOnclickAttributes();
+    
+    // Set up a MutationObserver to watch for new rows being added to the tables
+    setupTableObserver();
+    
+    // Explicitly ensure the function is set on the window object
+    window.showPlayerDetails = showPlayerDetails;
+    console.log('showPlayerDetails function explicitly assigned to window object');
+});
+
+/**
+ * Fix any onclick attributes on table rows by replacing them with event listeners
+ */
+function fixRowOnclickAttributes() {
+    // Select all rows in the stats tables
+    document.querySelectorAll('#batting-stats-body tr, #pitching-stats-body tr').forEach(row => {
+        // If the row has an onclick attribute, replace it with an event listener
+        if (row.hasAttribute('onclick')) {
+            const onclickValue = row.getAttribute('onclick');
+            row.removeAttribute('onclick'); // Remove the attribute
+            
+            // Parse the player ID and team from the onclick attribute
+            const match = onclickValue.match(/showPlayerDetails\(['"]([^'"]+)['"],\s*['"]([^'"]+)['"],\s*['"]([^'"]+)['"]\)/);
+            if (match) {
+                const playerId = match[1];
+                const team = match[2];
+                const type = match[3];
+                
+                row.addEventListener('click', function() {
+                    window.showPlayerDetails(playerId, team, type);
+                });
+                
+                console.log(`Fixed onclick for row with player ID ${playerId}`);
+            }
+        }
+    });
+}
+
+/**
+ * Close the player details modal
+ */
+function closePlayerModal() {
+    const modal = document.getElementById('player-details-modal');
+    modal.classList.remove('show');
+    
+    // Clear content to prevent memory leaks
+    document.getElementById('batting-games-stats').innerHTML = '';
+    document.getElementById('pitching-games-stats').innerHTML = '';
+}
+
+/**
+ * Switch between batting and pitching views in the player modal
+ */
+function switchPlayerStatsView(type) {
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.tab-btn[onclick*="${type}"]`).classList.add('active');
+
+    // Show/hide appropriate stats view
+    document.getElementById('player-batting-stats').style.display = type === 'batting' ? 'block' : 'none';
+    document.getElementById('player-pitching-stats').style.display = type === 'pitching' ? 'block' : 'none';
+}
+
+// Make the function globally available
+window.switchPlayerStatsView = switchPlayerStatsView;
+
+/**
+ * Show player details in a modal
+ */
+function showPlayerDetails(playerId, team, type) {
+    // Get player data from localStorage
+    const localData = localStorage.getItem('baseballStats');
+    if (!localData) {
+        alert('No player data available');
+        return;
+    }
+    
+    try {
+        const data = JSON.parse(localData);
+        
+        // Find player details
+        let playerDetails = null;
+        
+        // Check if data is in the new format with playerDetails
+        if (data.playerDetails && data.playerDetails[playerId]) {
+            playerDetails = data.playerDetails[playerId];
+        } else {
+            // Look for player in the players_TEAM arrays
+            const teamKeys = Object.keys(data).filter(key => key.startsWith('players_'));
+            for (const teamKey of teamKeys) {
+                const players = data[teamKey] || [];
+                const player = players.find(p => p.id === playerId);
+                if (player) {
+                    playerDetails = player;
+                    break;
+                }
+            }
+        }
+        
+        if (!playerDetails) {
+            alert('Player details not found');
+            return;
+        }
+        
+        // Set player information in the modal
+        document.getElementById('player-name').textContent = 
+            `${playerDetails.firstName} ${playerDetails.lastName}`;
+        document.getElementById('player-number').textContent = playerDetails.number;
+        document.getElementById('player-team').textContent = team;
+        document.getElementById('player-bats').textContent = formatBatsThrows(playerDetails.bats);
+        document.getElementById('player-throws').textContent = formatBatsThrows(playerDetails.throws);
+        
+        // Set team logo
+        const teamLogoElement = document.getElementById('player-team-logo');
+        teamLogoElement.src = getTeamLogoUrl(team);
+        teamLogoElement.alt = `${team} Logo`;
+        
+        // Load the player's game stats and games data
+        const games = JSON.parse(localStorage.getItem('games') || '[]');
+        
+        // Get all game stats for this player
+        const gameKeys = Object.keys(data).filter(key => key.startsWith('stats_'));
+        const playerGames = {
+            batting: [],
+            pitching: []
+        };
+        
+        gameKeys.forEach(gameKey => {
+            const gameId = gameKey.replace('stats_', '');
+            const gameData = games.find(g => g.id === gameId);
+            if (!gameData) return;
+            
+            const gameStats = data[gameKey];
+            if (!gameStats || !gameStats[team]) return;
+            
+            // Check batting stats
+            if (gameStats[team].batting && gameStats[team].batting[playerId]) {
+                playerGames.batting.push({
+                    game: gameData,
+                    stats: {
+                        ...gameStats[team].batting[playerId],
+                        team: team
+                    }
+                });
+            }
+            
+            // Check pitching stats
+            if (gameStats[team].pitching && gameStats[team].pitching[playerId]) {
+                playerGames.pitching.push({
+                    game: gameData,
+                    stats: {
+                        ...gameStats[team].pitching[playerId],
+                        team: team
+                    }
+                });
+            }
+        });
+        
+        // Clear previous content
+        document.getElementById('batting-games-stats').innerHTML = '';
+        document.getElementById('pitching-games-stats').innerHTML = '';
+        
+        // Display game stats
+        displayPlayerGameStats(playerGames.batting, 'batting', 'batting-games-stats');
+        displayPlayerGameStats(playerGames.pitching, 'pitching', 'pitching-games-stats');
+        
+        // Show the appropriate stats view
+        switchPlayerStatsView(type);
+        
+        // Show the modal
+        const modal = document.getElementById('player-details-modal');
+        modal.classList.add('show');
+    } catch (e) {
+        console.error('Error showing player details:', e);
+        alert('Error loading player details');
+    }
+}
+
+// Make the function globally available
+window.showPlayerDetails = showPlayerDetails;
+window.realShowPlayerDetails = showPlayerDetails; // Also assign to realShowPlayerDetails for our placeholder
+
+/**
+ * Format batting/throwing hand values
+ */
+function formatBatsThrows(value) {
+    switch(value) {
+        case 'R': return 'R';
+        case 'L': return 'L';
+        case 'S': return 'SWITCH';
+        default: return value;
+    }
+}
+
+// Make the function globally available
+window.formatBatsThrows = formatBatsThrows;
+
+/**
+ * Helper function to get team logo URL
+ */
+function getTeamLogoUrl(team) {
+    // Map team names to logo file paths
+    const logoMap = {
+        'ARCHERS': 'images/teams/archers.jpg',
+        'SIGULDA': 'images/teams/sigulda.jpg',
+        'PLATONE': 'images/teams/platone.jpg'
+    };
+    
+    // Return the logo URL or a default placeholder
+    return logoMap[team] || 'images/teams/default.jpg';
+}
+
+// Make the function globally available
+window.getTeamLogoUrl = getTeamLogoUrl;
+
+/**
+ * Display player game stats correctly
+ */
+function displayPlayerGameStats(playerGames, type, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    
+    if (playerGames.length === 0) {
+        container.innerHTML = '<div class="no-stats">Nav statistikas datu</div>';
+        return;
+    }
+    
+    // Sort games by date
+    playerGames.sort((a, b) => new Date(b.game.date) - new Date(a.game.date));
+    
+    // Display each game's stats
+    playerGames.forEach(({ game, stats }) => {
+        const statCard = document.createElement('div');
+        statCard.className = 'game-stat-card';
+        
+        const isHome = game.homeTeam === stats.team;
+        const opponent = isHome ? game.awayTeam : game.homeTeam;
+        const score = isHome ? `${game.homeScore} - ${game.awayScore}` : `${game.awayScore} - ${game.homeScore}`;
+        const result = isHome 
+            ? (parseInt(game.homeScore) > parseInt(game.awayScore) ? 'W' : 'L')
+            : (parseInt(game.awayScore) > parseInt(game.homeScore) ? 'W' : 'L');
+        
+        // Format date
+        const gameDate = new Date(game.date);
+        const formattedDate = gameDate.toLocaleDateString('lv-LV', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        statCard.innerHTML = `
+            <div class="game-stat-header">
+                <h4>${isHome ? 'vs' : '@'} ${opponent}</h4>
+                <div class="game-date">${formattedDate}</div>
+                <div class="game-result ${result === 'W' ? 'win' : 'loss'}">${score} (${result})</div>
+            </div>
+            <div class="stats-table-wrapper">
+                <table class="game-stats-table">
+                    <thead>
+                        <tr>
+                            ${getStatsTableHeaders(type)}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            ${getStatsTableRow(stats, type)}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        `;
+        
+        container.appendChild(statCard);
+    });
+    
+    // Add total stats
+    if (playerGames.length > 1) {
+        const totalStats = playerGames.reduce((total, game) => {
+            Object.entries(game.stats).forEach(([key, value]) => {
+                if (typeof value === 'number') {
+                    total[key] = (total[key] || 0) + value;
+                }
+            });
+            return total;
+        }, {});
+        
+        const totalCard = document.createElement('div');
+        totalCard.className = 'game-stat-card total-stats-card';
+        
+        totalCard.innerHTML = `
+            <div class="game-stat-header">
+                <h4>Kopējā statistika</h4>
+                <div class="game-date">${playerGames.length} spēles</div>
+            </div>
+            <div class="stats-table-wrapper">
+                <table class="game-stats-table">
+                    <thead>
+                        <tr>
+                            ${getStatsTableHeaders(type)}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="total-stats-row">
+                            ${getStatsTableRow(totalStats, type)}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        `;
+        
+        container.appendChild(totalCard);
+    }
+}
+
+// Make the function globally available
+window.displayPlayerGameStats = displayPlayerGameStats;
+
+/**
+ * Get table headers for stats table
+ */
+function getStatsTableHeaders(type) {
+    if (type === 'batting') {
+        return `
+            <th>AB</th>
+            <th>H</th>
+            <th>2B</th>
+            <th>3B</th>
+            <th>HR</th>
+            <th>RBI</th>
+            <th>R</th>
+            <th>BB</th>
+            <th>SO</th>
+            <th>HBP</th>
+            <th>SF</th>
+            <th>SAC</th>
+            <th>SB</th>
+            <th>CS</th>
+            <th>AVG</th>
+            <th>OBP</th>
+            <th>SLG</th>
+            <th>OPS</th>
+        `;
+    } else {
+        return `
+            <th>IP</th>
+            <th>H</th>
+            <th>R</th>
+            <th>ER</th>
+            <th>BB</th>
+            <th>SO</th>
+            <th>HR</th>
+            <th>BF</th>
+            <th>HBP</th>
+            <th>WP</th>
+            <th>BK</th>
+            <th>W</th>
+            <th>L</th>
+            <th>SV</th>
+            <th>ERA</th>
+            <th>WHIP</th>
+            <th>K/9</th>
+            <th>BB/9</th>
+        `;
+    }
+}
+
+// Make the function globally available
+window.getStatsTableHeaders = getStatsTableHeaders;
+
+/**
+ * Get table row for stats
+ */
+function getStatsTableRow(stats, type) {
+    if (type === 'batting') {
+        // Calculate all derived stats
+        const derivedStats = calculateBattingStats(stats);
+        
+        return `
+            <td>${stats.AB || 0}</td>
+            <td>${stats.H || 0}</td>
+            <td>${stats['2B'] || 0}</td>
+            <td>${stats['3B'] || 0}</td>
+            <td>${stats.HR || 0}</td>
+            <td>${stats.RBI || 0}</td>
+            <td>${stats.R || 0}</td>
+            <td>${stats.BB || 0}</td>
+            <td>${stats.SO || 0}</td>
+            <td>${stats.HBP || 0}</td>
+            <td>${stats.SF || 0}</td>
+            <td>${stats.SAC || 0}</td>
+            <td>${stats.SB || 0}</td>
+            <td>${stats.CS || 0}</td>
+            <td>${derivedStats.AVG.startsWith('.') ? '0' + derivedStats.AVG : derivedStats.AVG}</td>
+            <td>${derivedStats.OBP.startsWith('.') ? '0' + derivedStats.OBP : derivedStats.OBP}</td>
+            <td>${derivedStats.SLG.startsWith('.') ? '0' + derivedStats.SLG : derivedStats.SLG}</td>
+            <td>${derivedStats.OPS.startsWith('.') ? '0' + derivedStats.OPS : derivedStats.OPS}</td>
+        `;
+    } else {
+        // Calculate all derived pitching stats
+        const derivedStats = calculatePitchingStats(stats);
+        
+        return `
+            <td>${stats.IP || '0.0'}</td>
+            <td>${stats.H || 0}</td>
+            <td>${stats.R || 0}</td>
+            <td>${stats.ER || 0}</td>
+            <td>${stats.BB || 0}</td>
+            <td>${stats.SO || 0}</td>
+            <td>${stats.HR || 0}</td>
+            <td>${stats.BF || 0}</td>
+            <td>${stats.HBP || 0}</td>
+            <td>${stats.WP || 0}</td>
+            <td>${stats.BK || 0}</td>
+            <td>${stats.W || 0}</td>
+            <td>${stats.L || 0}</td>
+            <td>${stats.SV || 0}</td>
+            <td>${derivedStats.ERA}</td>
+            <td>${derivedStats.WHIP}</td>
+            <td>${derivedStats['K/9']}</td>
+            <td>${derivedStats['BB/9']}</td>
+        `;
+    }
+}
+
+// Make the function globally available
+window.getStatsTableRow = getStatsTableRow;
+
+// Calculate derived batting stats
+function calculateBattingStats(stats) {
+    // Ensure all values are numbers with defaults of 0
+    const s = {
+        AB: Number(stats.AB) || 0,
+        H: Number(stats.H) || 0,
+        '2B': Number(stats['2B']) || 0,
+        '3B': Number(stats['3B']) || 0,
+        HR: Number(stats.HR) || 0,
+        BB: Number(stats.BB) || 0,
+        HBP: Number(stats.HBP) || 0,
+        SF: Number(stats.SF) || 0
+    };
+    
+    // Calculate singles (H - 2B - 3B - HR)
+    const singles = s.H - (s['2B'] + s['3B'] + s.HR);
+    
+    // Calculate AVG (H/AB)
+    const avg = s.AB > 0 ? (s.H / s.AB).toFixed(3) : '.000';
+    
+    // Calculate OBP ((H + BB + HBP)/(AB + BB + HBP + SF))
+    const obpNumerator = s.H + s.BB + s.HBP;
+    const obpDenominator = s.AB + s.BB + s.HBP + s.SF;
+    const obp = obpDenominator > 0 ? (obpNumerator / obpDenominator).toFixed(3) : '.000';
+    
+    // Calculate SLG ((1B + 2*2B + 3*3B + 4*HR)/AB)
+    const totalBases = singles + (2 * s['2B']) + (3 * s['3B']) + (4 * s.HR);
+    const slg = s.AB > 0 ? (totalBases / s.AB).toFixed(3) : '.000';
+    
+    // Calculate OPS (OBP + SLG)
+    const ops = (parseFloat(obp) + parseFloat(slg)).toFixed(3);
+    
+    // Format all stats to have leading zeros if needed
+    const formatStat = (stat) => stat.startsWith('.') ? '0' + stat : stat;
+    
+    return {
+        ...stats,
+        AVG: formatStat(avg),
+        OBP: formatStat(obp),
+        SLG: formatStat(slg),
+        OPS: formatStat(ops)
+    };
+}
+
+// Make the function globally available
+window.calculateBattingStats = calculateBattingStats;
+
+// Calculate derived pitching stats
+function calculatePitchingStats(stats) {
+    return {
+        ...stats,
+        ERA: stats.IP > 0 ? ((stats.ER * 9) / stats.IP).toFixed(2) : '0.00',
+        WHIP: stats.IP > 0 ? ((stats.BB + stats.H) / stats.IP).toFixed(2) : '0.00',
+        'K/9': stats.IP > 0 ? ((stats.SO * 9) / stats.IP).toFixed(1) : '0.0',
+        'BB/9': stats.IP > 0 ? ((stats.BB * 9) / stats.IP).toFixed(1) : '0.0'
+    };
+}
+
+// Make the function globally available
+window.calculatePitchingStats = calculatePitchingStats;
+
+// Add these functions to calculate global stats
+
+function calculateGlobalStats() {
+    const games = JSON.parse(localStorage.getItem('games') || '[]');
+    const teams = ['ARCHERS', 'SIGULDA', 'PLATONE'];
+    const globalStats = {};
+
+    // Initialize stats for each team
+    teams.forEach(team => {
+        globalStats[team] = {
+            batting: {},
+            pitching: {}
+        };
+    });
+
+    // Process each completed game
+    games.forEach(game => {
+        if (!game.isCompleted) return;
+
+        const gameStats = JSON.parse(localStorage.getItem(`stats_${game.id}`) || '{}');
+        
+        // Process each team's stats
+        teams.forEach(team => {
+            const teamGameStats = gameStats[team] || { batting: {}, pitching: {} };
+
+            // Process batting stats
+            Object.entries(teamGameStats.batting).forEach(([playerId, stats]) => {
+                if (!globalStats[team].batting[playerId]) {
+                    globalStats[team].batting[playerId] = createEmptyBattingStats();
+                }
+                
+                // Sum up batting stats
+                Object.keys(stats).forEach(stat => {
+                    globalStats[team].batting[playerId][stat] += (stats[stat] || 0);
+                });
+            });
+
+            // Process pitching stats
+            Object.entries(teamGameStats.pitching).forEach(([playerId, stats]) => {
+                if (!globalStats[team].pitching[playerId]) {
+                    globalStats[team].pitching[playerId] = createEmptyPitchingStats();
+                }
+                
+                // Sum up pitching stats
+                Object.keys(stats).forEach(stat => {
+                    globalStats[team].pitching[playerId][stat] += (stats[stat] || 0);
+                });
+            });
+        });
+    });
+    
+    // Calculate derived stats for each player
+    teams.forEach(team => {
+        // Calculate batting averages and other derived stats
+        Object.values(globalStats[team].batting).forEach(stats => {
+            calculateDerivedBattingStats(stats);
+        });
+
+        // Calculate ERA and other derived pitching stats
+        Object.values(globalStats[team].pitching).forEach(stats => {
+            calculateDerivedPitchingStats(stats);
+        });
+    });
+
+    return globalStats;
+}
+
+function createEmptyBattingStats() {
+    return {
+        AB: 0, H: 0, '2B': 0, '3B': 0, HR: 0, RBI: 0, R: 0,
+        BB: 0, SO: 0, HBP: 0, SF: 0, SAC: 0, SB: 0, CS: 0,
+        AVG: '.000', OBP: '.000', SLG: '.000', OPS: '.000'
+    };
+}
+
+function createEmptyPitchingStats() {
+    return {
+        IP: 0, H: 0, R: 0, ER: 0, BB: 0, SO: 0, HR: 0,
+        BF: 0, HBP: 0, WP: 0, BK: 0, W: 0, L: 0, SV: 0,
+        ERA: '0.00', WHIP: '0.00', 'K/9': '0.00', 'BB/9': '0.00'
+    };
+}
+
+function calculateDerivedBattingStats(stats) {
+    // Calculate AVG
+    stats.AVG = stats.AB > 0 ? (stats.H / stats.AB).toFixed(3) : '.000';
+    
+    // Calculate OBP
+    const onBaseEvents = stats.H + stats.BB + stats.HBP;
+    const onBaseOpportunities = stats.AB + stats.BB + stats.HBP + stats.SF;
+    stats.OBP = onBaseOpportunities > 0 ? 
+        (onBaseEvents / onBaseOpportunities).toFixed(3) : '.000';
+    
+    // Calculate SLG
+    const bases = stats.H + stats['2B'] + (2 * stats['3B'] + 4 * stats.HR);
+    stats.SLG = stats.AB > 0 ? (bases / stats.AB).toFixed(3) : '.000';
+    
+    // Calculate OPS
+    stats.OPS = (parseFloat(stats.OBP) + parseFloat(stats.SLG)).toFixed(3);
+}
+
+function calculateDerivedPitchingStats(stats) {
+    // Calculate ERA
+    stats.ERA = stats.IP > 0 ? ((stats.ER * 9) / stats.IP).toFixed(2) : '0.00';
+    
+    // Calculate WHIP
+    stats.WHIP = stats.IP > 0 ? 
+        ((stats.BB + stats.H) / stats.IP).toFixed(2) : '0.00';
+    
+    // Calculate K/9
+    stats['K/9'] = stats.IP > 0 ? 
+        ((stats.SO * 9) / stats.IP).toFixed(1) : '0.0';
+    
+    // Calculate BB/9
+    stats['BB/9'] = stats.IP > 0 ? 
+        ((stats.BB * 9) / stats.IP).toFixed(1) : '0.0';
+}
+
+/**
+ * Convert the stats.json format to the format expected by the display functions
+ */
+function convertStatsFormat(data) {
+    // Initialize the result object with the expected structure
+    const result = {
+        battingStats: [],
+        pitchingStats: [],
+        playerDetails: {}
+    };
+    
+    // Process player details
+    const teamKeys = Object.keys(data).filter(key => key.startsWith('players_'));
+    teamKeys.forEach(teamKey => {
+        const teamName = teamKey.replace('players_', '');
+        const players = data[teamKey] || [];
+        
+        // Add each player to the playerDetails object
+        players.forEach(player => {
+            result.playerDetails[player.id] = {
+                firstName: player.firstName,
+                lastName: player.lastName,
+                number: player.number,
+                bats: player.bats,
+                throws: player.throws,
+                team: teamName
+            };
+        });
+    });
+    
+    // Create a map to store accumulated stats for each player
+    const battingStatsMap = {};
+    const pitchingStatsMap = {};
+    
+    // Process game stats
+    const gameKeys = Object.keys(data).filter(key => key.startsWith('stats_'));
+    gameKeys.forEach(gameKey => {
+        const gameStats = data[gameKey] || {};
+        
+        // Process each team's stats in the game
+        Object.keys(gameStats).forEach(team => {
+            const teamStats = gameStats[team] || {};
+            
+            // Process batting stats
+            if (teamStats.batting) {
+                Object.entries(teamStats.batting).forEach(([playerId, stats]) => {
+                    if (!battingStatsMap[playerId]) {
+                        battingStatsMap[playerId] = {
+                            ...createEmptyBattingStats(),
+                            playerId: playerId,
+                            team: team,
+                            name: getPlayerName(playerId, result.playerDetails)
+                        };
+                    }
+                    
+                    // Add stats
+                    Object.entries(stats).forEach(([stat, value]) => {
+                        if (typeof value === 'number') {
+                            battingStatsMap[playerId][stat] = (battingStatsMap[playerId][stat] || 0) + value;
+                        }
+                    });
+                });
+            }
+            
+            // Process pitching stats
+            if (teamStats.pitching) {
+                Object.entries(teamStats.pitching).forEach(([playerId, stats]) => {
+                    if (!pitchingStatsMap[playerId]) {
+                        pitchingStatsMap[playerId] = {
+                            ...createEmptyPitchingStats(),
+                            playerId: playerId,
+                            team: team,
+                            name: getPlayerName(playerId, result.playerDetails)
+                        };
+                    }
+                    
+                    // Add stats
+                    Object.entries(stats).forEach(([stat, value]) => {
+                        if (typeof value === 'number') {
+                            pitchingStatsMap[playerId][stat] = (pitchingStatsMap[playerId][stat] || 0) + value;
+                        }
+                    });
+                });
+            }
+        });
+    });
+    
+    // Convert maps to arrays and calculate derived stats
+    result.battingStats = Object.values(battingStatsMap);
+    result.battingStats.forEach(stats => calculateDerivedBattingStats(stats));
+    
+    result.pitchingStats = Object.values(pitchingStatsMap);
+    result.pitchingStats.forEach(stats => calculateDerivedPitchingStats(stats));
+    
+    return result;
+}
+
+// Helper function to get player name
+function getPlayerName(playerId, playerDetails) {
+    const player = playerDetails[playerId];
+    return player ? `${player.firstName} ${player.lastName}` : 'Unknown Player';
+}
+
+// Helper function to use fallback data
+function useFallbackData() {
+    console.log('Using fallback data');
+    
+    // Create fallback sample data
+    const sampleData = {
+        "players_PLATONE": [
+            {
+                "id": "player1",
+                "firstName": "Edgars",
+                "lastName": "Pogozelskis",
+                "number": 23,
+                "bats": "R",
+                "throws": "R"
+            }
+        ],
+        "players_ARCHERS": [
+            {
+                "id": "player2",
+                "firstName": "Ernests",
+                "lastName": "Lapins",
+                "number": 11,
+                "bats": "R",
+                "throws": "R"
+            }
+        ],
+        "players_SIGULDA": [
+            {
+                "id": "player3",
+                "firstName": "Janis",
+                "lastName": "Berzins",
+                "number": 7,
+                "bats": "R",
+                "throws": "R"
+            }
+        ],
+        "stats_game1": {
+            "PLATONE": {
+                "batting": {
+                    "player1": {
+                        "AB": 3,
+                        "H": 2,
+                        "2B": 1,
+                        "3B": 0,
+                        "HR": 0,
+                        "RBI": 1,
+                        "R": 1,
+                        "BB": 0,
+                        "SO": 1,
+                        "HBP": 0,
+                        "SF": 0,
+                        "SAC": 0,
+                        "SB": 0,
+                        "CS": 0
+                    }
+                }
+            }
+        },
+        "games": [
+            {
+                "id": "game1",
+                "stage": "I",
+                "date": "2024-03-15",
+                "time": "12:00",
+                "location": "Stadium",
+                "homeTeam": "PLATONE",
+                "awayTeam": "ARCHERS",
+                "homeScore": 5,
+                "awayScore": 3,
+                "isCompleted": true
+            }
+        ]
+    };
+    
+    // Store the sample data
+        localStorage.setItem('baseballStats', JSON.stringify(sampleData));
+        syncLocalStorage(sampleData);
+        const convertedData = convertStatsFormat(sampleData);
+        displayStats(convertedData);
+        
+        // Show warning
+        const warningMessage = 'Statistikas fails nevarēja tikt ielādēts. Tiek rādīti parauga dati.';
+        alert(warningMessage);
+}
+
+/**
+ * Load statistics from an external JSON file
+ */
+function loadStats() {
+    // Show loading message
+    document.getElementById('batting-stats-body').innerHTML = '<tr><td colspan="20" style="text-align: center;">Ielādē statistiku...</td></tr>';
+    document.getElementById('pitching-stats-body').innerHTML = '<tr><td colspan="20" style="text-align: center;">Ielādē statistiku...</td></tr>';
+    
+    console.log('Loading statistics...');
+    
+    // First try to load from localStorage
+    const localData = localStorage.getItem('baseballStats');
+    let hasLocalData = false;
+    
+    if (localData) {
+        try {
+            const data = JSON.parse(localData);
+            console.log('Found data in localStorage, displaying it first');
+            const convertedData = convertStatsFormat(data);
+            displayStats(convertedData);
+            hasLocalData = true;
+        } catch (e) {
+            console.error('Error parsing localStorage data:', e);
+        }
+    }
+    
+    // Then try to fetch from stats.json to update/supplement the data
+    console.log('Attempting to fetch latest data from stats.json');
+    
+    // Try multiple possible paths for stats.json
+    const possiblePaths = [
+        'stats.json',
+        '../stats.json',
+        './stats.json',
+        '/stats.json',
+        '/lbss/stats.json'
+    ];
+    
+    // Try each path in sequence
+    function tryNextPath(index) {
+        if (index >= possiblePaths.length) {
+            console.log('Could not load stats.json from any path');
+            if (!hasLocalData) {
+                console.log('No local data available, using fallback data');
+                useFallbackData();
+            }
+            return;
+        }
+        
+        const path = possiblePaths[index];
+        console.log(`Trying to load stats.json from: ${path}`);
+        
+        fetch(path)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Successfully loaded stats.json from:', path);
+                
+                // Compare with existing data
+                const existingData = localStorage.getItem('baseballStats');
+                if (existingData) {
+                    const oldData = JSON.parse(existingData);
+                    // Only update if there are differences
+                    if (JSON.stringify(oldData) !== JSON.stringify(data)) {
+                        console.log('Found new or updated data in stats.json');
+                        updateLocalStorage(data);
+                    } else {
+                        console.log('No changes in stats.json data');
+                    }
+                } else {
+                    console.log('No existing data, storing new data');
+                    updateLocalStorage(data);
+                }
+            })
+            .catch(error => {
+                console.warn(`Failed to load from ${path}:`, error);
+                // Try next path
+                tryNextPath(index + 1);
+            });
+    }
+    
+    // Start trying paths
+    tryNextPath(0);
+}
+
+// Helper function to update localStorage and display
+function updateLocalStorage(data) {
+    // Save the original data to localStorage
+    localStorage.setItem('baseballStats', JSON.stringify(data));
+    
+    // Synchronize localStorage (player database and game data)
+    syncLocalStorage(data);
+    
+    // Convert the data format to match what the code expects
+    const convertedData = convertStatsFormat(data);
+    
+    // Display the stats
+    displayStats(convertedData);
+    
+    // Optional: Show a small notification that data was updated
+    showUpdateNotification();
+}
+
+// Helper function to show update notification
+function showUpdateNotification() {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 1000;
+        animation: fadeInOut 3s ease-in-out forwards;
+    `;
+    notification.textContent = 'Statistika atjaunināta';
+    
+    // Add animation keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(-20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.appendChild(notification);
+    
+    // Remove the notification after animation
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+/**
+ * Process and display the loaded statistics
+ */
+function processAndDisplayStats(data) {
+    // This function is now obsolete since we directly call displayStats
+    // with the converted data. Keeping it for backward compatibility.
+    console.log('processAndDisplayStats called');
+    displayStats(data);
+}
+
+/**
+ * Show an error message in the stats tables
+ */
+function showError(message) {
+    const errorHtml = `<tr><td colspan="20" style="text-align: center; color: red;">${message}</td></tr>`;
+    document.getElementById('batting-stats-body').innerHTML = errorHtml;
+    document.getElementById('pitching-stats-body').innerHTML = errorHtml;
+}
+
+/**
+ * Display statistics in the tables
+ */
+function displayStats(data) {
+    // Get the filtered team (if any)
+    const teamFilter = document.getElementById('team-filter').value;
+    
+    // Get the batting and pitching stats
+    let battingStats = data.battingStats || [];
+    let pitchingStats = data.pitchingStats || [];
+    
+    // Apply team filter if needed
+    if (teamFilter) {
+        battingStats = battingStats.filter(stat => stat.team === teamFilter);
+        pitchingStats = pitchingStats.filter(stat => stat.team === teamFilter);
+    }
+    
+    // Sort stats by default criteria
+    battingStats.sort((a, b) => b.AB - a.AB);  // Sort by at-bats by default
+    pitchingStats.sort((a, b) => b.IP - a.IP); // Sort by innings pitched by default
+    
+    // Display batting stats
+    const battingBody = document.getElementById('batting-stats-body');
+    battingBody.innerHTML = '';
+    
+    if (battingStats.length === 0) {
+        battingBody.innerHTML = '<tr><td colspan="20" style="text-align: center;">Nav statistikas datu</td></tr>';
+    } else {
+        battingStats.forEach(player => {
+            const row = document.createElement('tr');
+            row.classList.add('clickable');
+            row.setAttribute('data-player-id', player.playerId);
+            row.setAttribute('data-team', player.team);
+            
+            // Use direct click event listener instead of attributes
+            row.addEventListener('click', function(event) {
+                try {
+                    if (typeof window.showPlayerDetails === 'function') {
+                        window.showPlayerDetails(player.playerId, player.team, 'batting');
+                    } else {
+                        console.error('showPlayerDetails function not available');
+                    }
+                } catch (e) {
+                    console.error('Error in row click handler:', e);
+                }
+            });
+            
+            row.innerHTML = `
+                <td>${player.name}</td>
+                <td>${player.team}</td>
+                <td>${player.AB}</td>
+                <td>${player.H}</td>
+                <td>${player['2B']}</td>
+                <td>${player['3B']}</td>
+                <td>${player.HR}</td>
+                <td>${player.RBI}</td>
+                <td>${player.R}</td>
+                <td>${player.BB}</td>
+                <td>${player.SO}</td>
+                <td>${player.HBP}</td>
+                <td>${player.SF}</td>
+                <td>${player.SAC}</td>
+                <td>${player.SB}</td>
+                <td>${player.CS}</td>
+                <td>${player.AVG}</td>
+                <td>${player.OBP}</td>
+                <td>${player.SLG}</td>
+                <td>${player.OPS}</td>
+            `;
+            
+            battingBody.appendChild(row);
+        });
+    }
+    
+    // Display pitching stats
+    const pitchingBody = document.getElementById('pitching-stats-body');
+    pitchingBody.innerHTML = '';
+    
+    if (pitchingStats.length === 0) {
+        pitchingBody.innerHTML = '<tr><td colspan="20" style="text-align: center;">Nav statistikas datu</td></tr>';
+    } else {
+        pitchingStats.forEach(player => {
+            const row = document.createElement('tr');
+            row.classList.add('clickable');
+            row.setAttribute('data-player-id', player.playerId);
+            row.setAttribute('data-team', player.team);
+            
+            // Use direct click event listener instead of attributes
+            row.addEventListener('click', function(event) {
+                try {
+                    if (typeof window.showPlayerDetails === 'function') {
+                        window.showPlayerDetails(player.playerId, player.team, 'pitching');
+                    } else {
+                        console.error('showPlayerDetails function not available');
+                    }
+                } catch (e) {
+                    console.error('Error in row click handler:', e);
+                }
+            });
+            
+            row.innerHTML = `
+                <td>${player.name}</td>
+                <td>${player.team}</td>
+                <td>${player.IP}</td>
+                <td>${player.H}</td>
+                <td>${player.R}</td>
+                <td>${player.ER}</td>
+                <td>${player.BB}</td>
+                <td>${player.SO}</td>
+                <td>${player.HR}</td>
+                <td>${player.BF}</td>
+                <td>${player.HBP}</td>
+                <td>${player.WP}</td>
+                <td>${player.BK}</td>
+                <td>${player.W}</td>
+                <td>${player.L}</td>
+                <td>${player.SV}</td>
+                <td>${player.ERA}</td>
+                <td>${player.WHIP}</td>
+                <td>${player['K/9']}</td>
+                <td>${player['BB/9']}</td>
+            `;
+            
+            pitchingBody.appendChild(row);
+        });
+    }
+    
+    // After adding rows, fix any remaining onclick attributes just in case
+    setTimeout(fixRowOnclickAttributes, 0);
+}
+
+// Switch between batting and pitching views
+function switchStatsView(view) {
+    currentView = view;
+    // Update button states
+    document.querySelectorAll('.stats-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.stats-btn[onclick*="${view}"]`).classList.add('active');
+    
+    // Show/hide appropriate stats table
+    document.getElementById('batting-stats').style.display = view === 'batting' ? 'block' : 'none';
+    document.getElementById('pitching-stats').style.display = view === 'pitching' ? 'block' : 'none';
+    
+    // Instead of reloading stats, just filter and display the existing data
+    const localData = localStorage.getItem('baseballStats');
+    if (localData) {
+        try {
+            const rawData = JSON.parse(localData);
+            const convertedData = convertStatsFormat(rawData);
+            displayStats(convertedData);
+        } catch (e) {
+            console.error('Error displaying stats:', e);
+            showError('Failed to display statistics');
+        }
+    }
+}
+
+/**
+ * Sort statistics by the specified field
+ */
+function sortStats(type, stat) {
+    console.log(`Sorting ${type} stats by ${stat}`);
+    
+    // Update header classes for sort indicators
+    const headers = document.querySelectorAll(`#${type}-stats th`);
+    headers.forEach(header => {
+        if (header.getAttribute('data-stat') === stat) {
+            if (header.classList.contains('sort-asc')) {
+                header.classList.remove('sort-asc');
+                header.classList.add('sort-desc');
+            } else if (header.classList.contains('sort-desc')) {
+                header.classList.remove('sort-desc');
+                header.classList.add('sort-asc');
+            } else {
+                header.classList.add('sort-asc');
+            }
+        } else {
+            header.classList.remove('sort-asc', 'sort-desc');
+        }
+    });
+    
+    // Determine if we're sorting ascending or descending
+    const sortHeader = document.querySelector(`#${type}-stats th[data-stat="${stat}"]`);
+    const isAscending = sortHeader.classList.contains('sort-asc');
+    
+    // Get the data from localStorage
+    const localData = localStorage.getItem('baseballStats');
+    if (!localData) {
+        console.error('No data in localStorage for sorting');
+        return;
+    }
+    
+    try {
+        // Get raw data and convert to proper format
+        const rawData = JSON.parse(localData);
+        const convertedData = convertStatsFormat(rawData);
+        
+        // Get the right type of stats array
+        let statsArray = type === 'batting' ? convertedData.battingStats : convertedData.pitchingStats;
+        console.log(`Found ${statsArray.length} items to sort`);
+        
+        // Apply team filter if needed
+        const teamFilter = document.getElementById('team-filter').value;
+        if (teamFilter) {
+            statsArray = statsArray.filter(item => item.team === teamFilter);
+            console.log(`After team filter, ${statsArray.length} items remain`);
+        }
+        
+        // Sort the array based on the selected stat
+        statsArray.sort((a, b) => {
+            let valA = a[stat];
+            let valB = b[stat];
+            
+            // Handle special cases for sorting
+            if (stat === 'name' || stat === 'team') {
+                // String comparison for text fields
+                return isAscending ? 
+                    valA.localeCompare(valB) : 
+                    valB.localeCompare(valA);
+            } else {
+                // Numeric comparison for numeric fields
+                // Parse as float (or 0 if it fails), remove leading '.' for stats like .300
+                valA = parseFloat(String(valA).replace(/^\./, '0.')) || 0;
+                valB = parseFloat(String(valB).replace(/^\./, '0.')) || 0;
+                
+                return isAscending ? valA - valB : valB - valA;
+            }
+        });
+        
+        console.log('Sorted array:', statsArray);
+        
+        // Display the sorted stats directly
+        if (type === 'batting') {
+            displayBattingStats(statsArray);
+        } else {
+            displayPitchingStats(statsArray);
+        }
+    } catch (e) {
+        console.error('Error sorting stats:', e);
+        showError(`Error sorting stats: ${e.message}`);
+    }
+}
+
+/**
+ * Display batting statistics
+ */
+function displayBattingStats(battingStats) {
+    const battingBody = document.getElementById('batting-stats-body');
+    battingBody.innerHTML = '';
+    
+    if (battingStats.length === 0) {
+        battingBody.innerHTML = '<tr><td colspan="20" style="text-align: center;">Nav statistikas datu</td></tr>';
+        return;
+    }
+    
+    battingStats.forEach(player => {
+        const row = document.createElement('tr');
+        row.classList.add('clickable');
+        row.setAttribute('data-player-id', player.playerId);
+        row.setAttribute('data-team', player.team);
+        
+        // Use direct click event listener instead of attributes
+        row.addEventListener('click', function(event) {
+            try {
+                if (typeof window.showPlayerDetails === 'function') {
+                    window.showPlayerDetails(player.playerId, player.team, 'batting');
+                } else {
+                    console.error('showPlayerDetails function not available');
+                }
+            } catch (e) {
+                console.error('Error in row click handler:', e);
+            }
+        });
+        
+        row.innerHTML = `
+            <td>${player.name}</td>
+            <td>${player.team}</td>
+            <td>${player.AB}</td>
+            <td>${player.H}</td>
+            <td>${player['2B']}</td>
+            <td>${player['3B']}</td>
+            <td>${player.HR}</td>
+            <td>${player.RBI}</td>
+            <td>${player.R}</td>
+            <td>${player.BB}</td>
+            <td>${player.SO}</td>
+            <td>${player.HBP}</td>
+            <td>${player.SF}</td>
+            <td>${player.SAC}</td>
+            <td>${player.SB}</td>
+            <td>${player.CS}</td>
+            <td>${player.AVG}</td>
+            <td>${player.OBP}</td>
+            <td>${player.SLG}</td>
+            <td>${player.OPS}</td>
+        `;
+        
+        battingBody.appendChild(row);
+    });
+    
+    // After adding rows, fix any remaining onclick attributes just in case
+    setTimeout(fixRowOnclickAttributes, 0);
+}
+
+/**
+ * Display pitching statistics
+ */
+function displayPitchingStats(pitchingStats) {
+    const pitchingBody = document.getElementById('pitching-stats-body');
+    pitchingBody.innerHTML = '';
+    
+    if (pitchingStats.length === 0) {
+        pitchingBody.innerHTML = '<tr><td colspan="20" style="text-align: center;">Nav statistikas datu</td></tr>';
+        return;
+    }
+    
+    pitchingStats.forEach(player => {
+        const row = document.createElement('tr');
+        row.classList.add('clickable');
+        row.setAttribute('data-player-id', player.playerId);
+        row.setAttribute('data-team', player.team);
+        
+        // Use direct click event listener instead of attributes
+        row.addEventListener('click', function(event) {
+            try {
+                if (typeof window.showPlayerDetails === 'function') {
+                    window.showPlayerDetails(player.playerId, player.team, 'pitching');
+                } else {
+                    console.error('showPlayerDetails function not available');
+                }
+            } catch (e) {
+                console.error('Error in row click handler:', e);
+            }
+        });
+        
+        row.innerHTML = `
+            <td>${player.name}</td>
+            <td>${player.team}</td>
+            <td>${player.IP}</td>
+            <td>${player.H}</td>
+            <td>${player.R}</td>
+            <td>${player.ER}</td>
+            <td>${player.BB}</td>
+            <td>${player.SO}</td>
+            <td>${player.HR}</td>
+            <td>${player.BF}</td>
+            <td>${player.HBP}</td>
+            <td>${player.WP}</td>
+            <td>${player.BK}</td>
+            <td>${player.W}</td>
+            <td>${player.L}</td>
+            <td>${player.SV}</td>
+            <td>${player.ERA}</td>
+            <td>${player.WHIP}</td>
+            <td>${player['K/9']}</td>
+            <td>${player['BB/9']}</td>
+        `;
+        
+        pitchingBody.appendChild(row);
+    });
+    
+    // After adding rows, fix any remaining onclick attributes just in case
+    setTimeout(fixRowOnclickAttributes, 0);
+}
+
+/**
+ * Filter statistics by team
+ */
+function filterStats() {
+    console.log('Filtering stats by team');
+    
+    // Fetch the stats data again to reapply filters
+    const localData = localStorage.getItem('baseballStats');
+    if (localData) {
+        try {
+            console.log('Loading data from localStorage for filtering');
+            const rawData = JSON.parse(localData);
+            const convertedData = convertStatsFormat(rawData);
+            
+            // Display stats with the filtered data
+            displayStats(convertedData);
+        } catch (e) {
+            console.error('Error parsing stats data for filtering:', e);
+            showError('Failed to load statistics from cache');
+        }
+    } else {
+        // If no cached data, try to fetch again
+        console.log('No data in localStorage, trying to fetch again');
+        loadStats();
+    }
+}
+
+function displayPlayerStats(playerId, teamId) {
+    const player = getPlayerInfo(playerId, teamId);
+    if (!player) {
+        console.error('Player not found:', playerId);
+            return;
+        }
+        
+    const stats = loadPlayerStats(playerId, teamId);
+    
+    // Display batting stats
+    const battingTable = document.querySelector('.batting-stats');
+    if (battingTable) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${player.firstName} ${player.lastName}</td>
+            <td>${stats.batting.AB || 0}</td>
+            <td>${stats.batting.H || 0}</td>
+            <td>${stats.batting['2B'] || 0}</td>
+            <td>${stats.batting['3B'] || 0}</td>
+            <td>${stats.batting.HR || 0}</td>
+            <td>${stats.batting.RBI || 0}</td>
+            <td>${stats.batting.R || 0}</td>
+            <td>${stats.batting.BB || 0}</td>
+            <td>${stats.batting.SO || 0}</td>
+            <td>${stats.batting.HBP || 0}</td>
+            <td>${stats.batting.SF || 0}</td>
+            <td>${stats.batting.SAC || 0}</td>
+            <td>${stats.batting.SB || 0}</td>
+            <td>${stats.batting.CS || 0}</td>
+            <td>${calculateBattingStats(stats.batting).AVG}</td>
+            <td>${calculateBattingStats(stats.batting).OBP}</td>
+            <td>${calculateBattingStats(stats.batting).SLG}</td>
+            <td>${calculateBattingStats(stats.batting).OPS}</td>
+        `;
+        battingTable.appendChild(row);
+    }
+    
+    // Display pitching stats
+    const pitchingTable = document.querySelector('.pitching-stats');
+    if (pitchingTable) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${player.firstName} ${player.lastName}</td>
+            <td>${stats.pitching.IP?.toFixed(1) || '0.0'}</td>
+            <td>${stats.pitching.H || 0}</td>
+            <td>${stats.pitching.R || 0}</td>
+            <td>${stats.pitching.ER || 0}</td>
+            <td>${stats.pitching.BB || 0}</td>
+            <td>${stats.pitching.SO || 0}</td>
+            <td>${stats.pitching.HR || 0}</td>
+            <td>${stats.pitching.BF || 0}</td>
+            <td>${stats.pitching.HBP || 0}</td>
+            <td>${stats.pitching.WP || 0}</td>
+            <td>${stats.pitching.BK || 0}</td>
+            <td>${stats.pitching.W || 0}</td>
+            <td>${stats.pitching.L || 0}</td>
+            <td>${stats.pitching.SV || 0}</td>
+            <td>${calculatePitchingStats(stats.pitching).ERA}</td>
+            <td>${calculatePitchingStats(stats.pitching).WHIP}</td>
+            <td>${calculatePitchingStats(stats.pitching)['K/9']}</td>
+            <td>${calculatePitchingStats(stats.pitching)['BB/9']}</td>
+        `;
+        pitchingTable.appendChild(row);
+    }
+}
+
+// Add styles for the game stats tables
+const modalStyle = document.createElement('style');
+modalStyle.textContent = `
+    .game-stat-card {
+        margin-bottom: 1.5rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .game-stats-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        min-width: max-content;
+    }
+
+    .game-stats-table th,
+    .game-stats-table td {
+        padding: 8px;
+        text-align: center;
+        border: 1px solid #ddd;
+        white-space: nowrap;
+    }
+
+    .game-stats-table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .game-stat-header {
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f8f9fa;
+    }
+
+    .game-result {
+        font-weight: bold;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+
+    .game-result.win {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .game-result.loss {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .total-stats-card {
+        background-color: #f8f9fa;
+        border: 2px solid #ddd;
+        margin-top: 2rem;
+    }
+
+    .total-stats-row {
+        font-weight: bold;
+        background-color: #f8f9fa;
+    }
+
+    #player-details-modal .modal-content {
+        max-width: 95vw;
+        width: max-content;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .player-stats-view {
+        overflow-x: auto;
+        margin-top: 1rem;
+    }
+
+    .games-stats {
+        width: 100%;
+    }
+
+    .games-list {
+        margin-top: 1rem;
+    }
+
+    .player-header {
+        margin-bottom: 2rem;
+    }
+
+    .stats-tabs {
+        margin-bottom: 1rem;
+    }
+
+    .tab-btn {
+        padding: 8px 16px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-weight: 500;
+        border-bottom: 2px solid transparent;
+    }
+
+    .tab-btn.active {
+        border-bottom-color: #dc3545;
+        color: #dc3545;
+    }
+
+    .stats-table-wrapper {
+        overflow-x: auto;
+        margin: 0 -1px;
+    }
+    
+    .no-stats {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+        font-style: italic;
+    }
+    
+    .player-info-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    .game-date {
+        color: #666;
+        font-style: italic;
+    }
+`;
+document.head.appendChild(modalStyle);
+
+function calculateTotalStats(gameStats, type) {
+    if (type === 'batting') {
+        const totals = createEmptyBattingStats();
+        
+        // Handle both array of stats or object with game IDs as keys
+        const statsArray = Array.isArray(gameStats) ? gameStats : Object.values(gameStats);
+        
+        statsArray.forEach(stats => {
+            // Some stats might have a nested 'stats' property (old format)
+            const statValues = stats.stats || stats;
+            
+            Object.keys(statValues).forEach(key => {
+                if (typeof statValues[key] === 'number' && totals.hasOwnProperty(key)) {
+                    totals[key] += statValues[key];
+                }
+            });
+        });
+        
+        // Calculate derived stats
+        calculateDerivedBattingStats(totals);
+        return totals;
+    } else {
+        const totals = createEmptyPitchingStats();
+        
+        // Handle both array of stats or object with game IDs as keys
+        const statsArray = Array.isArray(gameStats) ? gameStats : Object.values(gameStats);
+        
+        statsArray.forEach(stats => {
+            // Some stats might have a nested 'stats' property (old format)
+            const statValues = stats.stats || stats;
+            
+            Object.keys(statValues).forEach(key => {
+                if (typeof statValues[key] === 'number' && totals.hasOwnProperty(key)) {
+                    totals[key] += statValues[key];
+                }
+            });
+        });
+        
+        // Calculate derived stats
+        calculateDerivedPitchingStats(totals);
+        return totals;
+    }
+}
+
+/**
+ * Set up a MutationObserver to watch for changes to the stats tables
+ */
+function setupTableObserver() {
+    // Create a new MutationObserver
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                // Check if any tr elements were added
+                mutation.addedNodes.forEach(node => {
+                    if (node.tagName === 'TR') {
+                        // Fix any onclick attributes on the new row
+                        if (node.hasAttribute('onclick')) {
+                            const onclickValue = node.getAttribute('onclick');
+                            node.removeAttribute('onclick'); // Remove the attribute
+                            
+                            // Parse the player ID and team from the onclick attribute
+                            const match = onclickValue.match(/showPlayerDetails\(['"]([^'"]+)['"],\s*['"]([^'"]+)['"],\s*['"]([^'"]+)['"]\)/);
+                            if (match) {
+                                const playerId = match[1];
+                                const team = match[2];
+                                const type = match[3];
+                                
+                                node.addEventListener('click', function() {
+                                    window.showPlayerDetails(playerId, team, type);
+                                });
+                                
+                                console.log(`Fixed onclick for new row with player ID ${playerId}`);
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+    
+    // Start observing the batting stats table
+    observer.observe(document.getElementById('batting-stats-body'), { childList: true });
+    
+    // Start observing the pitching stats table
+    observer.observe(document.getElementById('pitching-stats-body'), { childList: true });
+    
+    console.log('Set up MutationObserver for stats tables');
+} 
