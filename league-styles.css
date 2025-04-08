@@ -567,6 +567,38 @@
         padding: 1rem;
         grid-template-columns: 1fr;
     }
+
+    .stats-tables {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+    }
+    
+    .stats-table-container {
+        min-width: 900px;
+    }
+    
+    .stats-table {
+        width: 100%;
+    }
+    
+    /* Ensure table scrolls horizontally on mobile */
+    .modal-content.stats-modal {
+        max-width: 95%;
+        padding: 1rem;
+    }
+    
+    .stats-section .stats-grid {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Make header sticky while scrolling horizontally */
+    .stats-table th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
 }
 
 /* League Overview */
@@ -1113,4 +1145,65 @@
 .player-info i {
     color: var(--primary-color);
     margin-right: 0.5rem;
+}
+
+/* Add horizontal scrolling to the game-stats-modal tables */
+.modal-content.stats-modal .stats-section {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+
+/* Sort indicators for table headers */
+.stats-table th {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    padding: 8px 14px;
+    transition: background-color 0.2s;
+}
+
+.stats-table th:hover {
+    background-color: #f0f0f0;
+}
+
+.stats-table th.sort-asc::after,
+.stats-table th.sort-desc::after {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    color: #333;
+}
+
+.stats-table th.sort-asc::after {
+    content: "▲";
+}
+
+.stats-table th.sort-desc::after {
+    content: "▼";
+}
+
+/* For mobile scrolling */
+@media (max-width: 768px) {
+    .stats-tables, 
+    .stats-section .stats-grid,
+    .game-stats-modal .modal-content {
+        overflow-x: auto;
+    }
+    
+    .stats-table-container,
+    .batting-stats-table,
+    .pitching-stats-table {
+        min-width: 900px;
+    }
+    
+    .stats-table th {
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 1;
+    }
 } 

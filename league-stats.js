@@ -446,6 +446,57 @@ function displayPlayerGameStats(playerGames, type, containerId) {
         renderTable();
     }
     
+    // Function to calculate total stats from all games
+    function calculateTotalStats() {
+        // Initialize total stats object
+        let totalStats = {};
+        
+        if (type === 'batting') {
+            totalStats = {
+                AB: 0, H: 0, '2B': 0, '3B': 0, HR: 0, RBI: 0, R: 0, 
+                BB: 0, SO: 0, HBP: 0, SF: 0, SAC: 0, SB: 0, CS: 0
+            };
+            
+            // Sum up all stats from individual games
+            playerGames.forEach(gameData => {
+                const { stats } = gameData;
+                for (const key in totalStats) {
+                    totalStats[key] += parseInt(stats[key] || 0, 10);
+                }
+            });
+            
+            // Calculate derived stats for the totals
+            const derivedStats = calculateBattingStats(totalStats);
+            Object.assign(totalStats, derivedStats);
+            
+        } else { // pitching
+            totalStats = {
+                IP: 0, H: 0, R: 0, ER: 0, BB: 0, SO: 0, HR: 0, 
+                HBP: 0, WP: 0, BK: 0, BF: 0
+            };
+            
+            // Sum up all stats from individual games
+            playerGames.forEach(gameData => {
+                const { stats } = gameData;
+                // Special handling for IP (innings pitched)
+                totalStats.IP += parseFloat(stats.IP || 0);
+                
+                // Sum other stats
+                for (const key in totalStats) {
+                    if (key !== 'IP') {
+                        totalStats[key] += parseInt(stats[key] || 0, 10);
+                    }
+                }
+            });
+            
+            // Calculate derived stats for the totals
+            const derivedStats = calculatePitchingStats(totalStats);
+            Object.assign(totalStats, derivedStats);
+        }
+        
+        return totalStats;
+    }
+    
     // Function to render the table content
     function renderTable() {
         // Clear existing table content except headers
@@ -540,6 +591,90 @@ function displayPlayerGameStats(playerGames, type, containerId) {
             
             table.appendChild(row);
         });
+        
+        // Add total stats row
+        addTotalStatsRow();
+    }
+    
+    // Function to add the total stats row
+    function addTotalStatsRow() {
+        const totalStats = calculateTotalStats();
+        const totalRow = document.createElement('tr');
+        totalRow.className = 'total-stats-row';
+        
+        if (type === 'batting') {
+            // Create cells for batting total stats
+            const cells = [
+                'KOPĀ',                            // Datums
+                '-',                              // Pretinieks
+                totalStats.AB,                    // AB
+                totalStats.H,                     // H
+                totalStats['2B'],                 // 2B
+                totalStats['3B'],                 // 3B
+                totalStats.HR,                    // HR
+                totalStats.RBI,                   // RBI
+                totalStats.R,                     // R
+                totalStats.BB,                    // BB
+                totalStats.SO,                    // SO
+                totalStats.HBP,                   // HBP
+                totalStats.SF,                    // SF
+                totalStats.SAC,                   // SAC
+                totalStats.SB,                    // SB
+                totalStats.CS,                    // CS
+                totalStats.AVG,                   // AVG
+                totalStats.OBP,                   // OBP
+                totalStats.SLG,                   // SLG
+                totalStats.OPS                    // OPS
+            ];
+            
+            // Add each cell to the row
+            cells.forEach((value, index) => {
+                const td = document.createElement('td');
+                td.textContent = value;
+                // Highlight derived stats
+                if (index >= 16) { // AVG, OBP, SLG, OPS indices
+                    td.className = 'highlight';
+                }
+                totalRow.appendChild(td);
+            });
+        } else { // pitching
+            // Format IP to one decimal place
+            const formattedIP = parseFloat(totalStats.IP).toFixed(1);
+            
+            // Create cells for pitching total stats
+            const cells = [
+                'KOPĀ',                            // Datums
+                '-',                              // Pretinieks
+                formattedIP,                      // IP
+                totalStats.H,                     // H
+                totalStats.R,                     // R
+                totalStats.ER,                    // ER
+                totalStats.BB,                    // BB
+                totalStats.SO,                    // SO
+                totalStats.HR,                    // HR
+                totalStats.HBP,                   // HBP
+                totalStats.WP,                    // WP
+                totalStats.BK,                    // BK
+                totalStats.BF,                    // BF
+                totalStats.ERA,                   // ERA
+                totalStats.WHIP,                  // WHIP
+                totalStats['K/9'],                // K/9
+                totalStats['BB/9']                // BB/9
+            ];
+            
+            // Add each cell to the row
+            cells.forEach((value, index) => {
+                const td = document.createElement('td');
+                td.textContent = value;
+                // Highlight derived stats
+                if (index >= 13) { // ERA, WHIP, K/9, BB/9 indices
+                    td.className = 'highlight';
+                }
+                totalRow.appendChild(td);
+            });
+        }
+        
+        table.appendChild(totalRow);
     }
     
     // Create header row with sorting
@@ -560,11 +695,33 @@ function displayPlayerGameStats(playerGames, type, containerId) {
     });
     table.appendChild(headerRow);
     
-    // Add CSS for header hover effect
+    // Add CSS for header hover effect and total row styling
     const style = document.createElement('style');
     style.textContent = `
         .game-stats-table th:hover {
             background-color: #a61941 !important;
+        }
+        
+        .total-stats-row {
+            background-color: #f0f0f0 !important;
+            font-weight: bold;
+        }
+        
+        .total-stats-row td {
+            border-top: 2px solid #8b1538 !important;
+        }
+        
+        .total-stats-row td:first-child,
+        .total-stats-row td:nth-child(2) {
+            text-align: center !important;
+        }
+        
+        .total-stats-row .highlight {
+            color: #8b1538 !important;
+        }
+        
+        .game-stats-table tr.total-stats-row:hover {
+            background-color: #f0f0f0 !important;
         }
     `;
     document.head.appendChild(style);

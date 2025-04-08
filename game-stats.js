@@ -131,11 +131,11 @@ function createStatsTable(type, stats) {
     }
     
     return `
-        <table class="stats-table">
+        <table class="stats-table ${type}-stats-table">
             <thead>
                 <tr>
-                    <th>Spēlētājs</th>
-                    ${statsList.map(stat => `<th>${stat}</th>`).join('')}
+                    <th data-stat="player" onclick="sortGameStats(this, '${type}')">Spēlētājs</th>
+                    ${statsList.map(stat => `<th data-stat="${stat}" onclick="sortGameStats(this, '${type}')">${stat}</th>`).join('')}
                 </tr>
             </thead>
             <tbody>
@@ -143,7 +143,7 @@ function createStatsTable(type, stats) {
                     const player = getPlayerInfo(playerId);
                     const playerStats = stats[playerId];
                     return `
-                        <tr>
+                        <tr data-player-id="${playerId}">
                             <td>${player ? `${player.firstName} ${player.lastName}` : 'Unknown Player'}</td>
                             ${statsList.map(stat => `
                                 <td>${formatStatValue(stat, playerStats[stat] || 0)}</td>
@@ -489,6 +489,83 @@ function saveGameStats() {
         console.error('Error saving stats:', error);
         alert('Kļūda saglabājot statistiku. Lūdzu, mēģiniet vēlreiz.');
     }
+}
+
+// Add sorting functionality for game stats tables
+let currentGameSort = { batting: { stat: null, direction: null }, pitching: { stat: null, direction: null } };
+
+function sortGameStats(header, type) {
+    const stat = header.dataset.stat;
+    const table = header.closest('table');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    
+    // First clear all sort indicators
+    table.querySelectorAll('th').forEach(th => {
+        th.classList.remove('sort-asc', 'sort-desc');
+    });
+    
+    // Determine sort direction
+    let direction = 'desc';
+    if (currentGameSort[type].stat === stat) {
+        direction = currentGameSort[type].direction === 'desc' ? 'asc' : 'desc';
+    } else if (stat === 'player') {
+        direction = 'asc'; // Names sort ascending by default
+    } else if (['ERA', 'WHIP', 'BB/9'].includes(stat)) {
+        direction = 'asc'; // Lower is better for these stats
+    }
+    
+    // Update current sort
+    currentGameSort[type].stat = stat;
+    currentGameSort[type].direction = direction;
+    
+    // Add sort indicator to header
+    header.classList.add(direction === 'asc' ? 'sort-asc' : 'sort-desc');
+    
+    // Sort rows
+    rows.sort((a, b) => {
+        let aValue, bValue;
+        
+        if (stat === 'player') {
+            aValue = a.cells[0].textContent.trim();
+            bValue = b.cells[0].textContent.trim();
+            return direction === 'asc' 
+                ? aValue.localeCompare(bValue) 
+                : bValue.localeCompare(aValue);
+        } else {
+            let columnIndex = -1;
+            
+            // Find the column index for the stat
+            table.querySelectorAll('th').forEach((th, index) => {
+                if (th.dataset.stat === stat) {
+                    columnIndex = index;
+                }
+            });
+            
+            if (columnIndex === -1) return 0;
+            
+            aValue = a.cells[columnIndex].textContent.trim();
+            bValue = b.cells[columnIndex].textContent.trim();
+            
+            // If working with batting averages or similar, remove leading '.'
+            if (['AVG', 'OBP', 'SLG', 'OPS'].includes(stat)) {
+                aValue = parseFloat(aValue.startsWith('.') ? '0' + aValue : aValue);
+                bValue = parseFloat(bValue.startsWith('.') ? '0' + bValue : bValue);
+            } else {
+                aValue = parseFloat(aValue);
+                bValue = parseFloat(bValue);
+            }
+            
+            // Handle NaN values
+            if (isNaN(aValue)) aValue = 0;
+            if (isNaN(bValue)) bValue = 0;
+            
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+        }
+    });
+    
+    // Reorder rows
+    rows.forEach(row => tbody.appendChild(row));
 }
 
 // Update the DOMContentLoaded event listener

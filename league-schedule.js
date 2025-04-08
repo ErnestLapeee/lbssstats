@@ -421,9 +421,35 @@ function openGameStatsModal(gameId) {
         };
     });
 
+    // Setup sort functionality for table headers
+    setupSortingHeaders();
+
     // Show modal
     modal.style.display = 'block';
     modal.classList.add('show');
+}
+
+// Setup sorting functionality for table headers
+function setupSortingHeaders() {
+    // Setup batting stats table headers
+    const battingHeaders = document.querySelectorAll('.batting-section .stats-table th');
+    const battingStats = ['player', 'AB', 'H', '2B', '3B', 'HR', 'RBI', 'R', 'BB', 'SO', 'HBP', 'SF', 'SAC', 'SB', 'CS', 'AVG', 'OBP', 'SLG', 'OPS'];
+    
+    battingHeaders.forEach((header, index) => {
+        header.setAttribute('data-stat', battingStats[index]);
+        header.style.cursor = 'pointer';
+        header.onclick = () => sortGameStats(header, 'batting');
+    });
+    
+    // Setup pitching stats table headers
+    const pitchingHeaders = document.querySelectorAll('.stats-section:not(.batting-section) .stats-table th');
+    const pitchingStats = ['player', 'IP', 'H', 'R', 'ER', 'BB', 'SO', 'HR', 'BF', 'HBP', 'WP', 'BK', 'W', 'L', 'SV', 'ERA', 'WHIP', 'K/9', 'BB/9'];
+    
+    pitchingHeaders.forEach((header, index) => {
+        header.setAttribute('data-stat', pitchingStats[index]);
+        header.style.cursor = 'pointer';
+        header.onclick = () => sortGameStats(header, 'pitching');
+    });
 }
 
 function loadTeamStats(teamId, gameId) {
@@ -510,6 +536,9 @@ function loadTeamStats(teamId, gameId) {
         `;
         pitchingTbody.appendChild(row);
     });
+    
+    // Setup sort functionality again since we've reloaded the table
+    setupSortingHeaders();
 }
 
 function getPlayerInfo(playerId, teamId) {
